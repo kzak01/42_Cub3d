@@ -105,6 +105,7 @@ void	dda(t_math *math, t_game *game)
 			math->mapY += math->stepY;
 			math->side = 1;
 		}
+		// printf("map {%d}\n", game->map.map_int[math->mapX][math->mapY]);
 		if (game->map.map_int[math->mapX][math->mapY] > 0)
 			math->hit = 1;
 	}

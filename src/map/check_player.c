@@ -32,7 +32,7 @@ int	check_player(t_game *game)
 			{
 				_get_direction(game, game->map.map[y][x]);
 				n_player++;
-				game->player.posX = x - 1;
+				game->player.posX = x;
 				game->player.posY = y;
 				game->map.map[y][x] = '0';
 			}
