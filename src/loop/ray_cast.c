@@ -179,8 +179,8 @@ void	wall_cast(t_game *game)
 		{
 			math.texY = (int)math.texPos & (texture_size - 1);
 			math.texPos += math.step;
-			// math.color = game->text[math.tex_n][texture_size * math.texY + math.texX];
-			math.color = 0xFF0000;
+			math.color = game->text[math.tex_n][texture_size * math.texY + math.texX];
+			// math.color = 0xFF0000;
 			if (math.side == 1)
 				math.color = (math.color >> 1) & 8355711;
 			game->buff[y][x] = math.color;

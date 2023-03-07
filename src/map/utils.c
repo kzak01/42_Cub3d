@@ -20,19 +20,19 @@ int	convertColorToInt(char* color)
 	int		B;
 	int		color_int;
 
-	split = ft_split(color + 2, ','); // divide la stringa in tre parti usando come delimitatori lo spazio e la virgola
+	split = ft_split(color + 2, ',');
 	if (split == NULL || ft_str_array_len(split) != 3)
 		return (error("something wrong in color!"));
-	R = ft_atoi(split[0]); // converte la prima parte in un intero
-	G = ft_atoi(split[1]); // converte la seconda parte in un intero
-	B = ft_atoi(split[2]); // converte la terza parte in un intero
+	R = ft_atoi(split[0]);
+	G = ft_atoi(split[1]);
+	B = ft_atoi(split[2]);
 	if (R < 0 || R > 255 || G < 0 || G > 255 || B < 0 || B > 255)
 	{
 		ft_free_char_array(split, ft_str_array_len(split));
 		return (error("something wrong in color!"));
 	}
-	color_int = (R << 16) | (G << 8) | B; // combina i tre valori in un unico intero
-	ft_free_char_array(split, ft_str_array_len(split)); // dealloca la memoria allocata da ft_split
+	color_int = (R << 16) | (G << 8) | B;
+	ft_free_char_array(split, ft_str_array_len(split));
 	return (color_int);
 }
 

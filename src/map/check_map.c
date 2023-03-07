@@ -7,7 +7,7 @@ int	check_map(t_game *game)
 
 	y = -1;
 	// printf("qua\n");
-	printf("check_map %s\n", game->map.control_map[0]);
+	// printf("check_map %s\n", game->map.control_map[0]);
 	// printf("%s\n", game->map.map[0]);
 	while (game->map.control_map[++y] && y < game->map.map_height - 1)
 	{

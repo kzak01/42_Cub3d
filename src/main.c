@@ -22,14 +22,14 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_player(&game);
-	// printf("n={%s}\ns={%s}\nw={%s}\ne={%s}\n"
-	// 		"flor={%d}\nceil={%d}\nmap w={%d}\nmap h={%d}\n"
-	// 		"posX={%f}\nposY={%f}\ndirection={%d}\n",
-	// 		game.map.north_texture_path, game.map.south_texture_path,
-	// 		game.map.west_texture_path, game.map.east_texture_path,
-	// 		game.map.floor_color, game.map.ceiling_color,
-	// 		game.map.map_width, game.map.map_height,
-	// 		game.player.posX, game.player.posY, game.player.direction);
+	printf("n={%s}\ns={%s}\nw={%s}\ne={%s}\n"
+			"flor={%d}\nceil={%d}\nmap w={%d}\nmap h={%d}\n"
+			"posX={%f}\nposY={%f}\ndirection={%d}\n",
+			game.map.north_texture_path, game.map.south_texture_path,
+			game.map.west_texture_path, game.map.east_texture_path,
+			game.map.floor_color, game.map.ceiling_color,
+			game.map.map_width, game.map.map_height,
+			game.player.posX, game.player.posY, game.player.direction);
 
 	// printf("-----------------char------------------------\n");
 	// ft_print_str_array(game.map.map);

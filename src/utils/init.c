@@ -10,7 +10,7 @@ int	init_struct(t_game *game)
 	game->text = NULL;
 	game->buff = (int **)malloc(sizeof(int *) * w_height);
 	if (!game->buff)
-		return (error("malloc problem!"));
+		return (error("malloc buff problem!"));
 	while (++i < w_height)
 	{
 		game->buff[i] = (int *)malloc(sizeof(int) * w_width);

@@ -64,7 +64,7 @@ static int	in_while2(char *line, t_game *game, int *line_num)
 		if (check_other(game))
 			return (1);
 		read_map_line(line, game, ++*line_num, game->map.map_width);
-		printf("{%d}    %s\n", *line_num, game->map.control_map[*line_num]);
+		// printf("{%d}    %s\n", *line_num, game->map.control_map[*line_num]);
 	}
 	return (0);
 }
@@ -98,6 +98,7 @@ static int	read_map(const char *file_path, t_game *game)
 		free(line);
 	}
 	game->map.map[game->map.map_height] = NULL;
+	game->map.control_map[game->map.map_height] = NULL;
 	// printf("\nprima map%s\n", game->map.map[0]);
 	// printf("prima con %s\n", game->map.control_map[0]);
 	// printf("prima map%s\n", game->map.map[1]);

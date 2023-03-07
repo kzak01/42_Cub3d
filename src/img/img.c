@@ -6,7 +6,7 @@ static int	_alloc_it(t_game *tex)
 	int	j;
 
 	i = -1;
-	if (!(tex->text = (int **)malloc(sizeof(int *) * 4))) // per numero delle texture
+	if (!(tex->text = (int **)malloc(sizeof(int *) * 4)))
 		return (error("error in malloc texture!"));
 	while (++i < 4)
 	{
