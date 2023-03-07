@@ -6,15 +6,15 @@ static int	_alloc_it(t_game *tex)
 	int	j;
 
 	i = -1;
-	if (!(tex->text = (int **)malloc(sizeof(int *) * 1))) // per numero delle texture
-		return (-1);
-	while (++i < 1)
+	if (!(tex->text = (int **)malloc(sizeof(int *) * 4))) // per numero delle texture
+		return (error("error in malloc texture!"));
+	while (++i < 4)
 	{
 		if (!(tex->text[i] = (int *)malloc(sizeof(int) * (texture_size * texture_size))))
-			return (-1);
+			return (error("error in malloc texture!"));
 	}
 	i = -1;
-	while (++i < 1)
+	while (++i < 4)
 	{
 		j = -1;
 		while (++j < texture_size * texture_size)
@@ -44,10 +44,10 @@ static void	_load_it(t_game *tex)
 {
 	t_img	img;
 
-	_load_img(tex, tex->text[0], "textures/redbrick.xpm", &img);
-	// _load_img(tex, tex->text[1], "path/texture", &img);
-	// _load_img(tex, tex->text[2], "path/texture", &img);
-	//richiamare con i vari path delle texture
+	_load_img(tex, tex->text[0], tex->map.north_texture_path, &img);
+	_load_img(tex, tex->text[1], tex->map.south_texture_path, &img);
+	_load_img(tex, tex->text[2], tex->map.west_texture_path, &img);
+	_load_img(tex, tex->text[3], tex->map.east_texture_path, &img);
 }
 
 int	load_textures(t_game *tex)

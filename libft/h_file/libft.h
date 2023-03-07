@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 10:43:29 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/06 22:36:31 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/07 11:39:02 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ long		ft_atol_base(const char *str, const char *base);
 char		*ft_strreplace(char *str, const char old_char, const char new_char);
 size_t		ft_strspn(const char *str, const char *chars);
 void		ft_free_char_array(char **str, int len);
-size_t		ft_str_array_len(char **str);
+void		ft_free_int_array(int **str, int len);
+int			ft_str_array_len(char **str);
 
 #endif

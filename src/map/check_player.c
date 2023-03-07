@@ -1,6 +1,6 @@
 #include "map.h"
 
-static void	get_direction(t_game *game, char c)
+static void	_get_direction(t_game *game, char c)
 {
 	if (c == 'N')
 		game->player.direction = NORTH;
@@ -20,7 +20,7 @@ int	check_player(t_game *game)
 
 	n_player = 0;
 	y = -1;
-	while (game->map.map[++y])
+	while (game->map.map[++y] && y < game->map.map_height)
 	{
 		x = -1;
 		while (game->map.map[y][++x])
@@ -30,9 +30,9 @@ int	check_player(t_game *game)
 				|| game->map.map[y][x] == 'W'
 				|| game->map.map[y][x] == 'E')
 			{
-				get_direction(game, game->map.map[y][x]);
+				_get_direction(game, game->map.map[y][x]);
 				n_player++;
-				game->player.posX = x;
+				game->player.posX = x - 1;
 				game->player.posY = y;
 				game->map.map[y][x] = '0';
 			}

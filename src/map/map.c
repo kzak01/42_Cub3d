@@ -63,7 +63,8 @@ static int	in_while2(char *line, t_game *game, int *line_num)
 			return (0);
 		if (check_other(game))
 			return (1);
-		read_map_line(line, game, ++*line_num - 1, game->map.map_width);
+		read_map_line(line, game, ++*line_num, game->map.map_width);
+		printf("{%d}    %s\n", *line_num, game->map.control_map[*line_num]);
 	}
 	return (0);
 }
@@ -78,14 +79,15 @@ static int	read_map(const char *file_path, t_game *game)
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		return (error("Failed to open file"));
-	line_num = 0;
+	line_num = -1;
 	game->map.map = (char **)malloc(sizeof(char *) * game->map.map_height);
-	game->map.control_map = (char **)malloc(sizeof(char *) * game->map.map_height);
 	game->map.map[0] = NULL;
+	game->map.control_map = (char **)malloc(sizeof(char *) * game->map.map_height);
 	game->map.control_map[0] = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		err = in_while2(line, game, &line_num);
+
 		if (err == 1)
 		{
 			free(line);
@@ -95,6 +97,13 @@ static int	read_map(const char *file_path, t_game *game)
 			break;
 		free(line);
 	}
+	game->map.map[game->map.map_height] = NULL;
+	// printf("\nprima map%s\n", game->map.map[0]);
+	// printf("prima con %s\n", game->map.control_map[0]);
+	// printf("prima map%s\n", game->map.map[1]);
+	// printf("prima con%s\n", game->map.control_map[1]);
+	// ft_print_str_array(game->map.map);
+	// ft_print_str_array(game->map.control_map);
 	free(line);
 	if (close(fd) == -1)
 		return (error("Failed to close file"));
@@ -113,8 +122,8 @@ int	get_check_map(t_game *game, int ac, char **av)
 		return (1);
 	if (check_rule(game))
 		return (1);
-	if (check_map(game))
-		return (1);
+	// if (check_map(game))
+	// 	return (1);
 	if (check_player(game) != 1)
 		return (error("only 1 player allowed!"));
 	game->map.map_int = char_to_int_map(game);

@@ -5,8 +5,9 @@
 
 typedef struct s_game t_game;
 
-int	key_press(int key, t_game *game);
-int	key_release(int	key, t_game *game);
+//key.c
+int		key_press(int key, t_game *game);
+int		key_release(int	key, t_game *game);
 void	key_used(t_game *game);
 
 void	move_up(t_game *game);

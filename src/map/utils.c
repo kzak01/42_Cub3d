@@ -42,6 +42,7 @@ void	read_map_line(char *line, t_game *game, int line_index, int map_width_ptr)
 	char	*padded_line;
 
 	line_len = ft_strlen(line);
+	printf("\n line={%s}\n", line);
 	game->map.control_map[line_index] = ft_strdup(line);
 	if ((int)line_len < map_width_ptr)
 	{

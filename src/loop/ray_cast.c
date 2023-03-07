@@ -11,11 +11,10 @@ void	background(t_game *game)
 		x = -1;
 		while (++x < w_width)
 		{
-			//fare colori passati da mapa
 			if (y < (w_height / 2))
-				game->buff[y][x] = 0x00FFFF; //celeste
+				game->buff[y][x] = game->map.ceiling_color;
 			else
-				game->buff[y][x] = 0x808080; // grigio
+				game->buff[y][x] = game->map.floor_color;;
 		}
 	}
 }
@@ -106,7 +105,7 @@ void	dda(t_math *math, t_game *game)
 			math->mapY += math->stepY;
 			math->side = 1;
 		}
-		if (game->map.map[math->mapX][math->mapY] > 0)
+		if (game->map.map_int[math->mapX][math->mapY] > 0)
 			math->hit = 1;
 	}
 }
@@ -142,7 +141,7 @@ void	calculate_pixel(t_math *math, t_game *game)
 	math->draw_end = math->lineH / 2 + w_height / 2;
 	if (math->draw_end >= w_height)
 		math->draw_end = w_height - 1;
-	math->tex_n = game->map.map[math->mapX][math->mapY] - 1;
+	math->tex_n = game->map.map_int[math->mapX][math->mapY] - 1;
 	math->wall_x = side_wall(math, game);
 	//La funzione floor() della libreria math.h in C restituisce il più 
 	//grande numero intero non superiore al valore passato come argomento. 
@@ -165,6 +164,7 @@ void	wall_cast(t_game *game)
 	int	x;
 	int	y;
 
+	ft_bzero(&math, sizeof(t_math));
 	x = -1;
 	while (++x < w_width)
 	{

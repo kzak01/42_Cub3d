@@ -6,14 +6,14 @@ SRC_MAIN = 	src/main.c \
 			src/key/movement.c \
 			src/loop/loop.c \
 			src/loop/ray_cast.c \
-			src/utils/free_exit.c \
-			src/utils/init.c \
-			src/utils/error.c \
+			src/map/check_map.c \
+			src/map/check_player.c \
 			src/map/map.c \
 			src/map/utils.c \
 			src/map/varius_check.c \
-			src/map/check_map.c \
-			src/map/check_player.c \
+			src/utils/error.c \
+			src/utils/free_exit.c \
+			src/utils/init.c \
 
 SRC	= $(SRC_MAIN)
 
@@ -30,7 +30,7 @@ LIBFT_DIR	:= libft/
 LIBFT_A		:= libft/libft.a
 
 LIBFT_MAKE	:= @cd libft && make --no-print-directory && make clean --no-print-directory
-MLX_MAKE_MAC	:= @cd mlx && make -s CFLAGS="-Wno-error=format-truncation" --no-print-directory 2> /dev/null
+MLX_MAKE_MAC	:= @cd minilibx && make --no-print-directory 2> /dev/null
 MLX_MAKE_LINUX	:= @cd mlx && make --no-print-directory 2> /dev/null
 RMLIB		:= @cd libft && make fclean --no-print-directory
 RMMLX		:= @rm -f libmlx.dylib libmlx.a
@@ -44,10 +44,10 @@ RACE_F	= -g -fsanitize=thread
 LEAK_F  = -g -fsanitize=leak -llsan
 
 ifeq ($(shell uname), Darwin)
-	MLX_LIB	= libmlx.dylib
+	MLX_LIB	= minilibx/libmlx.a -Lmlx -lmlx -framework OpenGL -framework Appkit
 	MLX_MAKE = $(MLX_MAKE_MAC)
 else
-	MLX_LIB	= mlx/libmlx.a
+	MLX_LIB	= mlx/libmlx.a -lX11 -lXext -lXpm
 	MLX_MAKE = $(MLX_MAKE_LINUX)
 endif
 
@@ -59,7 +59,7 @@ $(NAME): $(OBJS)
 	@$(MLX_MAKE)
 	@echo "		${GREEN}Minilibx compiled${RESET}"
 	@echo "	... [Making $(NAME)]"
-	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_A) ${MLX_LIB} -lm -lX11 -lXext -lXpm -o $(NAME) > /dev/null
+	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_A) ${MLX_LIB} -lm -o $(NAME) > /dev/null
 	@echo "		${GREEN}Cub3d compiled${RESET}"
 
 # LINK ALL OBJECTS
@@ -87,7 +87,7 @@ norm:
 	@norminette -R CheckForbiddenSourceHeader src/*.c src/*.h src/*/*.c src/*/*.h libft/*c libft/*.h
 
 sanitize:	re $(OBJS)
-			@$(CC) $(DEBUG_F) $(OBJS) $(LIBFT_A) ${MLX_LIB} -lm -lX11 -lXext -lXpm -o $(NAME)
+			@$(CC) $(DEBUG_F) $(OBJS) $(LIBFT_A) ${MLX_LIB} -lm -o $(NAME)
 			$(info [Making with fsanitize=address ...])
 
 race:		re $(OBJS)

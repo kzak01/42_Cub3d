@@ -6,8 +6,12 @@ int	check_map(t_game *game)
 	int	y;
 
 	y = -1;
+	// printf("qua\n");
+	printf("check_map %s\n", game->map.control_map[0]);
+	// printf("%s\n", game->map.map[0]);
 	while (game->map.control_map[++y] && y < game->map.map_height - 1)
 	{
+		// printf("dentro\n");
 		x = -1;
 		// printf("%s\n", game->map.control_map[y]);
 		while (game->map.control_map[y][++x])

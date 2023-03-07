@@ -5,6 +5,12 @@
 
 typedef struct s_game t_game;
 
+//check_map.c
+int		check_map(t_game *game);
+int		**char_to_int_map(t_game *game);
+
+//check_player.c
+int		check_player(t_game *game);
 
 //map.c
 int		get_check_map(t_game *game, int ac, char **av);
@@ -20,12 +26,5 @@ int		check_rule(t_game *game);
 int		check_other(t_game *game);
 int		check_texture(char *line, t_game *game);
 int		check_color(char *line, t_game *game);
-
-//check_map.c
-int		check_map(t_game *game);
-int		**char_to_int_map(t_game *game);
-
-//check_player.c
-int	check_player(t_game *game);
 
 #endif

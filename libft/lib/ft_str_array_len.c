@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_arrray_len.c                                :+:      :+:    :+:   */
+/*   ft_str_array_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 22:36:21 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/06 22:36:22 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/07 10:50:58 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../h_file/libft.h"
 
-size_t	ft_str_array_len(char **str)
+int	ft_str_array_len(char **str)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	while (str[len] != NULL)

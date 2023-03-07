@@ -25,46 +25,11 @@ int	init_struct(t_game *game)
 	return (0);
 }
 
-void	init_player(t_game *game)
+static void	_buff_init(t_game *game)
 {
-	//posizione iniziale telecamera
-	//larghezza della visuale
-	if (game->player.direction == NORTH)
-	{
-		game->player.dirX = 0.0;
-		game->player.dirY = 1.0;
-		game->player.planeX = -0.66;
-		game->player.planeY = 0.0;
-	}
-	else if (game->player.direction == SOUTH)
-	{
-		game->player.dirX = 0.0;
-		game->player.dirY = -1.0;
-		game->player.planeX = 0.66;
-		game->player.planeY = 0.0;
-	}
-	else if (game->player.direction == WEST)
-	{
-		game->player.dirX = -1.0;
-		game->player.dirY = 0.0;
-		game->player.planeX = 0.0;
-		game->player.planeY = -0.66;
-	}
-	else if (game->player.direction == EAST)
-	{
-		game->player.dirX = 1.0;
-		game->player.dirY = 0.0;
-		game->player.planeX = 0.0;
-		game->player.planeY = 0.66;
-	}
-	game->key.key_down = 0;
-	game->key.key_left = 0;
-	game->key.key_right = 0;
-	game->key.key_up = 0;
-	game->key.key_esc = 0;
-	//inizializzare il buff(la foto) che stamperemo di 0
 	int	i;
 	int j;
+
 	i = -1;
 	j = -1;
 	while(++i < w_height)
@@ -72,4 +37,49 @@ void	init_player(t_game *game)
 		while(++j < w_width)
 			game->buff[i][j] = 0;
 	}
+}
+
+static void	_direction_init1(t_game *game)
+{
+	if (game->player.direction == NORTH)
+	{
+		game->player.dirX = -1.0;
+		game->player.dirY = 0.0;
+		game->player.planeX = 0.0;
+		game->player.planeY = 0.66;
+	}
+	else if (game->player.direction == SOUTH)
+	{
+		game->player.dirX = 1.0;
+		game->player.dirY = 0.0;
+		game->player.planeX = 0.0;
+		game->player.planeY = -0.66;
+	}
+}
+
+static void	_direction_init2(t_game *game)
+{
+	if (game->player.direction == WEST)
+	{
+		game->player.dirX = 0.0;
+		game->player.dirY = -1.0;
+		game->player.planeX = -0.66;
+		game->player.planeY = 0.0;
+	}
+	else if (game->player.direction == EAST)
+	{
+		game->player.dirX = 0.0;
+		game->player.dirY = 1.0;
+		game->player.planeX = 0.66;
+		game->player.planeY = 0.0;
+	}
+}
+
+void	init_player(t_game *game)
+{
+	_buff_init(game);
+	_direction_init1(game);
+	_direction_init2(game);
+	game->player.movementS = 0.07;
+	game->player.rotationS = 0.07;
 }

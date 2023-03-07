@@ -9,6 +9,8 @@
 # include <string.h>
 # include "../libft/h_file/libft.h"
 # include "../mlx/mlx.h"
+# include "../minilibx/mlx.h"
+# include <mlx.h>
 
 # include "map/map.h"
 # include "img/img.h"
