@@ -19,8 +19,12 @@
 # include "loop/loop.h"
 
 # define MAP_CHARS "012NEWS \n"
+// # define w_width 1920
+// # define w_height 1080
 # define w_width 1280
 # define w_height 1024
+// # define w_width 640
+// # define w_height 480
 # define texture_size 64
 
 # define KEY_PRESS 2

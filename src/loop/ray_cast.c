@@ -35,7 +35,6 @@ typedef struct s_math
 	int		stepY;
 	int		hit;
 	int		side;
-
 	int		lineH;
 	int		draw_start;
 	int		draw_end;
@@ -105,7 +104,6 @@ void	dda(t_math *math, t_game *game)
 			math->mapY += math->stepY;
 			math->side = 1;
 		}
-		// printf("map {%d}\n", game->map.map_int[math->mapX][math->mapY]);
 		if (game->map.map_int[math->mapX][math->mapY] > 0)
 			math->hit = 1;
 	}
@@ -133,17 +131,27 @@ int	side_wall(t_math *math, t_game *game)
 		return (game->player.posX + math->perpWallDist * math->rayDirX);
 }
 
-int	find_texture(t_math *math, t_game *game)
+int find_texture(t_math *math, t_game *game)
 {
-	if (math->side == 0 && game->player.posX < math->mapX)
-		return (NORTH);
-	else if (math->side == 0)
-		return (SOUTH);
-	if (math->side == 1 && game->player.posY < math->mapY)
-		return (EAST);
-	else if (math->side == 1)
-		return (WEST);
-	return (0);
+    int tex_n;
+
+    if (math->side == 0 && math->rayDirX < 0)
+        tex_n = NORTH;
+    else if (math->side == 0 && math->rayDirX >= 0)
+        tex_n = SOUTH;
+    else if (math->side == 1 && math->rayDirY < 0)
+        tex_n = EAST;
+    else
+        tex_n = WEST;
+
+    if (game->map.map_int[math->mapX][math->mapY] == 2)
+        tex_n += 4;
+    else if (game->map.map_int[math->mapX][math->mapY] == 3)
+        tex_n += 8;
+    else if (game->map.map_int[math->mapX][math->mapY] == 4)
+        tex_n += 12;
+
+    return (tex_n);
 }
 
 void	calculate_pixel(t_math *math, t_game *game)
@@ -155,7 +163,6 @@ void	calculate_pixel(t_math *math, t_game *game)
 	math->draw_end = math->lineH / 2 + w_height / 2;
 	if (math->draw_end >= w_height)
 		math->draw_end = w_height - 1;
-	// math->tex_n = game->map.map_int[math->mapX][math->mapY] - 1;
 	math->tex_n = find_texture(math, game);
 	math->wall_x = side_wall(math, game);
 	//La funzione floor() della libreria math.h in C restituisce il più 
@@ -165,10 +172,7 @@ void	calculate_pixel(t_math *math, t_game *game)
 	//Ad esempio, floor(2.8) restituisce 2, floor(-2.8) restituisce -3
 	math->wall_x -= floor(math->wall_x);
 	math->texX = (int)(math->wall_x * (double)texture_size);
-	if (math->side == 0 && math->rayDirX > 0)
-		math->texX = texture_size - math->texX - 1;
-	if (math->side == 1 && math->rayDirY < 0)
-		math->texX = texture_size - math->texX - 1;
+	math->texX = texture_size - math->texX - 1;
 	math->step = 1.0 * texture_size / math->lineH;
 	math->texPos = (math->draw_start - w_height / 2 + math->lineH / 2) * math->step;
 }

@@ -28,11 +28,11 @@ static int	_load_img(t_game *tex, int *n_texture, char *path, t_img *img)
 	int	x;
 	int	y;
 
-	y = -1;
 	img->img = mlx_xpm_file_to_image(tex->mlx, path, &img->img_w, &img->img_h);
 	if (!img->img)
 		return (error("texture not found!"));
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->line_size, &img->endian);
+	y = -1;
 	while (++y < img->img_h)
 	{
 		x = -1;
