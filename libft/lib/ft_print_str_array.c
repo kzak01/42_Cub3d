@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 21:16:22 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/04 23:05:07 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/09 13:09:53 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	ft_print_str_array(char **str)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	
 	if (str[0] == NULL)
 		return ;
 	while (str[++i] != NULL)

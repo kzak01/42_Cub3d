@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:37:34 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/07 11:39:11 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/09 13:09:37 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_free_int_array(int **str, int len)
 
 	i = 0;
 	if (!str)
-		return;
+		return ;
 	while (i < len)
 	{
 		if (str[i])

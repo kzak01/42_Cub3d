@@ -35,10 +35,10 @@ int	main(int argc, char **argv)
 	ft_print_str_array(game.map.map);
 	// printf("-----------------cont------------------------\n");
 	// ft_print_str_array(game.map.control_map);
-	// printf("-----------------int-------------------------\n");
-	// print_int_map(game.map.map_int, game.map.map_height, game.map.map_width);
-	// ft_print_str_array(game.map.control_map);
+	printf("-----------------int-------------------------\n");
+	print_int_map(game.map.map_int, game.map.map_height, game.map.map_width);
 
+	game.mlx = mlx_init();
 	if (load_textures(&game))
 		return (1);
 
@@ -52,6 +52,6 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, KEY_PRESS, 0, key_press, &game);
 	mlx_hook(game.win, KEY_RELEASE, 0, key_release, &game);
 	mlx_loop(game.mlx);
-	// free_exit(&game);
+	free_exit(&game);
 	return(0);
 }

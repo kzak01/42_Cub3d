@@ -6,7 +6,7 @@
 #    By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 11:10:21 by kzak              #+#    #+#              #
-#    Updated: 2023/03/07 11:39:36 by kzak             ###   ########.fr        #
+#    Updated: 2023/03/09 13:08:55 by kzak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,6 @@ SRC_LIBFT = lib/ft_atoi.c \
 	  lib/ft_isspace.c \
 	  lib/ft_atol.c \
 	  lib/ft_print_str_array.c \
-	  lib/ft_atol_base.c \
 	  lib/ft_strreplace.c \
 	  lib/ft_strspn.c \
 	  lib/ft_free_char_array.c \

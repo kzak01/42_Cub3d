@@ -106,7 +106,7 @@ void	dda(t_math *math, t_game *game)
 			math->side = 1;
 		}
 		// printf("map {%d}\n", game->map.map_int[math->mapX][math->mapY]);
-		if (game->map.map[math->mapX][math->mapY] > '0')
+		if (game->map.map_int[math->mapX][math->mapY] > 0)
 			math->hit = 1;
 	}
 }
@@ -133,6 +133,19 @@ int	side_wall(t_math *math, t_game *game)
 		return (game->player.posX + math->perpWallDist * math->rayDirX);
 }
 
+int	find_texture(t_math *math, t_game *game)
+{
+	if (math->side == 0 && game->player.posX < math->mapX)
+		return (NORTH);
+	else if (math->side == 0)
+		return (SOUTH);
+	if (math->side == 1 && game->player.posY < math->mapY)
+		return (EAST);
+	else if (math->side == 1)
+		return (WEST);
+	return (0);
+}
+
 void	calculate_pixel(t_math *math, t_game *game)
 {
 	math->lineH = (int)(w_height / math->perpWallDist);
@@ -142,7 +155,8 @@ void	calculate_pixel(t_math *math, t_game *game)
 	math->draw_end = math->lineH / 2 + w_height / 2;
 	if (math->draw_end >= w_height)
 		math->draw_end = w_height - 1;
-	// math->tex_n = game->map.map[math->mapX][math->mapY] - 1;
+	// math->tex_n = game->map.map_int[math->mapX][math->mapY] - 1;
+	math->tex_n = find_texture(math, game);
 	math->wall_x = side_wall(math, game);
 	//La funzione floor() della libreria math.h in C restituisce il più 
 	//grande numero intero non superiore al valore passato come argomento. 
@@ -179,10 +193,7 @@ void	wall_cast(t_game *game)
 		{
 			math.texY = (int)math.texPos & (texture_size - 1);
 			math.texPos += math.step;
-			// math.color = game->text[math.tex_n][texture_size * math.texY + math.texX];
-			math.color = 0xFF0000;
-			if (math.side == 1)
-				math.color = (math.color >> 1) & 8355711;
+			math.color = game->text[math.tex_n][texture_size * math.texY + math.texX];
 			game->buff[y][x] = math.color;
 			y++;
 		}

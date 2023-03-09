@@ -6,8 +6,6 @@ int	init_struct(t_game *game)
 	int j;
 
 	i = -1;
-	game->mlx = mlx_init();
-	game->text = NULL;
 	game->buff = (int **)malloc(sizeof(int *) * w_height);
 	if (!game->buff)
 		return (error("malloc buff problem!"));
@@ -80,6 +78,6 @@ void	init_player(t_game *game)
 	_buff_init(game);
 	_direction_init1(game);
 	_direction_init2(game);
-	game->player.movementS = 0.07;
-	game->player.rotationS = 0.07;
+	game->player.movementS = 0.06;
+	game->player.rotationS = 0.05;
 }

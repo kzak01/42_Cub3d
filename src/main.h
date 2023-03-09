@@ -19,8 +19,6 @@
 # include "loop/loop.h"
 
 # define MAP_CHARS "012NEWS \n"
-# define MAP_EMPTY_CHAR '0'
-# define MAP_WALL_CHAR '1'
 # define w_width 1280
 # define w_height 1024
 # define texture_size 64
@@ -36,12 +34,11 @@
 # define K_AR_D 125
 //ESC key
 # define K_ESC 53
-
-enum	e_bool
-{
-	FALSE,
-	TRUE
-};
+//Key keyboard
+# define K_K_A 0
+# define K_K_D 2
+# define K_K_S 1
+# define K_K_W 13
 
 enum	e_cardinal
 {
@@ -57,6 +54,8 @@ typedef struct s_key
 	int	key_down;
 	int	key_right;
 	int	key_left;
+	int	key_rotate_r;
+	int	key_rotate_l;
 	int	key_esc;
 }	t_key;
 
@@ -64,20 +63,12 @@ typedef struct s_immage
 {
 	void	*img;
 	int		*data;
-
 	int		img_w;
 	int		img_h;
 	int		bpp;
 	int		line_size;
 	int		endian;
 }	t_img;
-
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-} t_rgb;
 
 typedef struct s_map
 {

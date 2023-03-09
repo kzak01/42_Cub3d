@@ -4,6 +4,7 @@ SRC_MAIN = 	src/main.c \
 			src/img/img.c \
 			src/key/key.c \
 			src/key/movement.c \
+			src/key/rotate.c \
 			src/loop/loop.c \
 			src/loop/ray_cast.c \
 			src/map/check_map.c \

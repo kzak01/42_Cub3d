@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 00:24:01 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/04 00:24:39 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/09 13:10:14 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strcpy(char *dst, const char *src)
 {
-	char *dst_start;
+	char	*dst_start;
 
 	dst_start = dst;
 	while (*src != '\0')
