@@ -2,14 +2,18 @@
 
 void	read_texture_path(char *line, char **texture_path_ptr)
 {
+	// printf("line ======== {%s}\n", line);
+	char	*text;
+
+	text = ft_strtrim(line + 2, " \t");
+	if (!*text)
+		error("Invalid texture path found");
 	if (*texture_path_ptr)
 	{
 		free(*texture_path_ptr);
 		error("Duplicate texture path found");
 	}
-	*texture_path_ptr = ft_strtrim(line + 2, " \t");
-	if (!**texture_path_ptr)
-		error("Invalid texture path found");
+	*texture_path_ptr = text;
 }
 
 int	convertColorToInt(char* color)
@@ -42,7 +46,6 @@ void	read_map_line(char *line, t_game *game, int line_index, int map_width_ptr)
 	char	*padded_line;
 
 	line_len = ft_strlen(line);
-	printf("\n line={%s}\n", line);
 	game->map.control_map[line_index] = ft_strdup(line);
 	if ((int)line_len < map_width_ptr)
 	{

@@ -2,6 +2,7 @@
 
 void	move_up(t_game *game)
 {
+	printf("moving\n");
 	if (!game->map.map_int[(int)(game->player.posX + game->player.dirX *
 			game->player.movementS)][(int)game->player.posY])
 		game->player.posX += game->player.dirX * game->player.movementS;

@@ -31,8 +31,10 @@ int	main(int argc, char **argv)
 			game.map.map_width, game.map.map_height,
 			game.player.posX, game.player.posY, game.player.direction);
 
-	// printf("-----------------char------------------------\n");
-	// ft_print_str_array(game.map.map);
+	printf("-----------------char------------------------\n");
+	ft_print_str_array(game.map.map);
+	// printf("-----------------cont------------------------\n");
+	// ft_print_str_array(game.map.control_map);
 	// printf("-----------------int-------------------------\n");
 	// print_int_map(game.map.map_int, game.map.map_height, game.map.map_width);
 	// ft_print_str_array(game.map.control_map);

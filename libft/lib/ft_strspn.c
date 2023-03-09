@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 22:10:43 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/05 22:11:03 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/09 10:18:00 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 size_t	ft_strspn(const char *str, const char *chars)
 {
-	size_t count;
-	const char *p;
-	const char *q;
+	size_t	count;
+	const char	*p;
+	const char	*q;
 
 	count = 0;
 	p = str;

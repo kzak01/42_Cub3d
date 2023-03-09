@@ -30,6 +30,7 @@ int	check_other(t_game *game)
 
 int	check_texture(char *line, t_game *game)
 {
+	// printf("line ======== {%s}\n", line);
 	if (ft_strncmp(line, "NO ", 3) == 0)
 	{
 		read_texture_path(line, &game->map.north_texture_path);
@@ -40,6 +41,7 @@ int	check_texture(char *line, t_game *game)
 	{
 		read_texture_path(line, &game->map.south_texture_path);
 		game->map.south++;
+		printf("south ======== {%s}\n", game->map.south_texture_path);
 		return (1);
 	}
 	else if (ft_strncmp(line, "WE ", 3) == 0)
