@@ -5,9 +5,9 @@ static int	_alloc_it(t_game *tex)
 	int	i;
 	int	j;
 
-	i = -1;
 	if (!(tex->text = (int **)malloc(sizeof(int *) * 4)))
 		return (error("error in malloc texture!"));
+	i = -1;
 	while (++i < 4)
 	{
 		if (!(tex->text[i] = (int *)malloc(sizeof(int) * (texture_size * texture_size))))

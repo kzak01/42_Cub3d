@@ -10,7 +10,7 @@
 # include "../libft/h_file/libft.h"
 # include "../mlx/mlx.h"
 # include "../minilibx/mlx.h"
-# include <mlx.h>
+// # include <mlx.h>
 
 # include "map/map.h"
 # include "img/img.h"
@@ -18,7 +18,7 @@
 # include "key/key.h"
 # include "loop/loop.h"
 
-# define MAP_CHARS "012NEWS \n"
+# define MAP_CHARS "01NEWS \n"
 // # define w_width 1920
 // # define w_height 1080
 # define w_width 1280
@@ -34,14 +34,14 @@
 //Keyboard ARROWS
 # define K_AR_L 123
 # define K_AR_R 124
-# define K_AR_U 126
 # define K_AR_D 125
+# define K_AR_U 126
 //ESC key
 # define K_ESC 53
 //Key keyboard
 # define K_K_A 0
-# define K_K_D 2
 # define K_K_S 1
+# define K_K_D 2
 # define K_K_W 13
 
 enum	e_cardinal
@@ -51,6 +51,34 @@ enum	e_cardinal
 	WEST,
 	EAST
 };
+
+typedef struct s_math
+{
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	double	wall_x;
+	double	step;
+	double	texPos;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		lineH;
+	int		draw_start;
+	int		draw_end;
+	int		tex_n;
+	int		texX;
+	int		texY;
+	int		color;
+}	t_math;
 
 typedef struct s_key
 {
@@ -80,11 +108,12 @@ typedef struct s_map
 	char	*south_texture_path;
 	char	*west_texture_path;
 	char	*east_texture_path;
+	char	**map;
+	char	**control_map;
 	int		floor_color;
 	int		ceiling_color;
 	int		map_width;
 	int		map_height;
-	char	**map;
 	int		north;
 	int		south;
 	int		west;
@@ -92,7 +121,6 @@ typedef struct s_map
 	int		ceil;
 	int		floor;
 	int		cardinal;
-	char	**control_map;
 	int		read_line;
 	int		**map_int;
 }	t_map;
@@ -114,12 +142,12 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	t_map		map;
-	t_img		img;
-	t_player	player;
-	t_key		key;
 	int			**text;
 	int			**buff;
+	t_img		img;
+	t_key		key;
+	t_map		map;
+	t_player	player;
 }	t_game;
 
 #endif

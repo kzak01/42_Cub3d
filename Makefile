@@ -7,6 +7,7 @@ SRC_MAIN = 	src/main.c \
 			src/key/rotate.c \
 			src/loop/loop.c \
 			src/loop/ray_cast.c \
+			src/loop/wall_cast.c \
 			src/map/check_map.c \
 			src/map/check_player.c \
 			src/map/map.c \
