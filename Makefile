@@ -19,24 +19,43 @@ SRC_MAIN = 	src/main.c \
 			src/utils/free_exit.c \
 			src/utils/init.c \
 
+SRC_FILE_BONUS = src_bonus/main.c \
+			src_bonus/img/img.c \
+			src_bonus/key/key.c \
+			src_bonus/key/movement.c \
+			src_bonus/key/rotate.c \
+			src_bonus/loop/loop.c \
+			src_bonus/loop/ray_cast.c \
+			src_bonus/loop/raycast_utils.c \
+			src_bonus/map/check_map.c \
+			src_bonus/map/check_player.c \
+			src_bonus/map/map.c \
+			src_bonus/map/open_close_fd.c \
+			src_bonus/map/read_map.c \
+			src_bonus/map/utils.c \
+			src_bonus/map/varius_check.c \
+			src_bonus/utils/error.c \
+			src_bonus/utils/free_exit.c \
+			src_bonus/utils/init.c \
+
 SRC	= $(SRC_MAIN)
 
-FLAGS				:= -g -Wall -Wextra -Werror -fcommon
+FLAGS			:= -g -Wall -Wextra -Werror -fcommon
 
-OBJS				= $(addprefix $(OBJS_DIR)/, ${SRC:.c=.o})
-LIBFT				= $(addprefix $(LIBF_DIR), $(LIBFT_A))
-MLX_DIR				= $(addprefix $(MLX_DIR), $(MLX_LIB))
 
-OBJS_DIR			= objs
+OBJS_DIR		= objs
+OBJS			= $(addprefix $(OBJS_DIR)/, ${SRC:.c=.o})
 
-LIBFT_DIR	:= libft/
-LIBFT_A		:= libft/libft.a
+LIBFT_DIR		:= libft/
+LIBFT_A			:= libft/libft.a
+LIBFT			= $(addprefix $(LIBF_DIR), $(LIBFT_A))
 
-LIBFT_MAKE	:= @cd libft && make --no-print-directory && make clean --no-print-directory
+LIBFT_MAKE		:= @cd libft && make --no-print-directory && make clean --no-print-directory
 MLX_MAKE_MAC	:= @cd minilibx && make --no-print-directory 2> /dev/null
 MLX_MAKE_LINUX	:= @cd mlx && make --no-print-directory 2> /dev/null
-RMLIB		:= @cd libft && make fclean --no-print-directory
-RMMLX		:= @rm -f libmlx.dylib libmlx.a
+RMLIB			:= @cd libft && make fclean --no-print-directory
+RMMLX			:= @rm -f libmlx.dylib libmlx.a
+MLX_DIR			= $(addprefix $(MLX_DIR), $(MLX_LIB))
 
 CC	= @gcc
 
@@ -54,6 +73,10 @@ else
 	MLX_MAKE = $(MLX_MAKE_LINUX)
 endif
 
+.PHONY: all bonus clean fclean re norm sanitize race clean_all
+
+all: $(NAME)
+
 $(NAME): $(OBJS)
 	@echo "	... [Making libft]"
 	@$(LIBFT_MAKE)
@@ -70,7 +93,12 @@ $(shell echo $(OBJS_DIR))/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(FLAGS) -c $< -o $@
 
-all: $(NAME)
+# all: $(NAME)
+
+bonus: SRC := $(SRC_FILE_BONUS)
+bonus: MLX_LIB := minilibx/libmlx.a -lX11 -lXext -lXpm
+bonus: FLAGS += -DBONUS
+bonus: clean_all $(NAME)
 
 clean:
 	@echo "	... [Removing ${NAME} objs files]"
@@ -87,7 +115,7 @@ clean_all: fclean
 	$(RMLIB)
 
 norm:
-	@norminette -R CheckForbiddenSourceHeader src/*.c src/*.h src/*/*.c src/*/*.h libft/*/*c libft/*/*.h
+	@norminette -R CheckForbiddenSourceHeader $(SRC_MAIN) $(SRC_BONUS) libft/*/*c libft/*/*.h
 
 sanitize:	re $(OBJS)
 			@$(CC) $(DEBUG_F) $(OBJS) $(LIBFT_A) ${MLX_LIB} -lm -o $(NAME)
@@ -105,4 +133,4 @@ re: 		fclean $(NAME)
 
 ree:		clean_all $(NAME)
 
-.PHONY : all clean fclean re
+# .PHONY : all clean fclean re
