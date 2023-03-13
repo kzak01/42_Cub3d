@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
+/*   Updated: 2023/03/13 13:33:13 by kzak             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAIN_H
 # define MAIN_H
 
@@ -21,11 +33,11 @@
 # define MAP_CHARS "01NEWS \n"
 // # define w_width 1920
 // # define w_height 1080
-# define w_width 1280
-# define w_height 1024
+# define W_WIDTH 1280
+# define W_HEIGHT 1024
 // # define w_width 640
 // # define w_height 480
-# define texture_size 64
+# define TEXTURE_SIZE 64
 
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
@@ -54,29 +66,29 @@ enum	e_cardinal
 
 typedef struct s_math
 {
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
 	double	wall_x;
 	double	step;
-	double	texPos;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
+	double	tex_pos;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
 	int		hit;
 	int		side;
-	int		lineH;
+	int		line_h;
 	int		draw_start;
 	int		draw_end;
 	int		tex_n;
-	int		texX;
-	int		texY;
+	int		tex_x;
+	int		tex_y;
 	int		color;
 }	t_math;
 
@@ -128,14 +140,14 @@ typedef struct s_map
 typedef struct s_player
 {
 	int			direction;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double		movementS;
-	double		rotationS;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		movement_s;
+	double		rotation_s;
 }	t_player;
 
 typedef struct s_game

@@ -1,27 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   img.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 13:37:16 by kzak              #+#    #+#             */
+/*   Updated: 2023/03/13 13:39:51 by kzak             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "img.h"
-
-// int	ft_array_int_len(int **arr)
-// {
-//     int len = 0;
-//     while (*arr != NULL) {
-//         len++;
-//         arr++;
-//     }
-//     return len;
-// }
-
-
-// int	ft_array_int_line_str(int **arr, int line)
-// {
-// 	int i;
-
-// 	i = -1;
-// 	if (!arr)
-// 		return (0);
-// 	while (arr[line][++i])
-// 		;
-// 	return (i);
-// }
 
 static int	_alloc_it(t_game *tex)
 {
@@ -29,18 +18,21 @@ static int	_alloc_it(t_game *tex)
 	int	j;
 
 	i = -1;
-	if (!(tex->text = (int **)malloc(sizeof(int *) * 4)))
+	tex->text = (int **)malloc(sizeof(int *) * 4);
+	if (!tex->text)
 		return (error("error in malloc texture!"));
 	while (++i < 4)
 	{
-		if (!(tex->text[i] = (int *)malloc(sizeof(int) * (texture_size * texture_size))))
+		tex->text[i] = (int *)malloc(sizeof(int)
+				* (TEXTURE_SIZE * TEXTURE_SIZE));
+		if (!tex->text[i])
 			return (error("error in malloc texture!"));
 	}
 	i = -1;
 	while (++i < 4)
 	{
 		j = -1;
-		while (++j < texture_size * texture_size)
+		while (++j < TEXTURE_SIZE * TEXTURE_SIZE)
 			tex->text[i][j] = 0;
 	}
 	return (0);
@@ -54,7 +46,8 @@ static int	_load_img(t_game *tex, int *n_texture, char *path, t_img *img)
 	img->img = mlx_xpm_file_to_image(tex->mlx, path, &img->img_w, &img->img_h);
 	if (!img->img)
 		return (error("texture not found!"));
-	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->line_size, &img->endian);
+	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->line_size,
+			&img->endian);
 	y = -1;
 	while (++y < img->img_h)
 	{

@@ -6,14 +6,14 @@ int	init_struct(t_game *game)
 	int j;
 
 	i = -1;
-	game->buff = (int **)malloc(sizeof(int *) * w_height);
+	game->buff = (int **)malloc(sizeof(int *) * W_HEIGHT);
 	if (!game->buff)
 		return (error("malloc buff problem!"));
-	while (++i < w_height)
+	while (++i < W_HEIGHT)
 	{
-		game->buff[i] = (int *)malloc(sizeof(int) * w_width);
+		game->buff[i] = (int *)malloc(sizeof(int) * W_WIDTH);
 		j = -1;
-		while (++j < w_width)
+		while (++j < W_WIDTH)
 			game->buff[i][j] = 0;
 	}
 	ft_bzero(&game->map, sizeof(t_map));
@@ -30,9 +30,9 @@ static void	_buff_init(t_game *game)
 
 	i = -1;
 	j = -1;
-	while(++i < w_height)
+	while(++i < W_HEIGHT)
 	{
-		while(++j < w_width)
+		while(++j < W_WIDTH)
 			game->buff[i][j] = 0;
 	}
 }
@@ -41,17 +41,17 @@ static void	_direction_init1(t_game *game)
 {
 	if (game->player.direction == NORTH)
 	{
-		game->player.dirX = -1.0;
-		game->player.dirY = 0.0;
-		game->player.planeX = 0.0;
-		game->player.planeY = 0.66;
+		game->player.dir_x = -1.0;
+		game->player.dir_y = 0.0;
+		game->player.plane_x = 0.0;
+		game->player.plane_y = 0.66;
 	}
 	else if (game->player.direction == SOUTH)
 	{
-		game->player.dirX = 1.0;
-		game->player.dirY = 0.0;
-		game->player.planeX = 0.0;
-		game->player.planeY = -0.66;
+		game->player.dir_x = 1.0;
+		game->player.dir_y = 0.0;
+		game->player.plane_x = 0.0;
+		game->player.plane_y = -0.66;
 	}
 }
 
@@ -59,17 +59,17 @@ static void	_direction_init2(t_game *game)
 {
 	if (game->player.direction == WEST)
 	{
-		game->player.dirX = 0.0;
-		game->player.dirY = -1.0;
-		game->player.planeX = -0.66;
-		game->player.planeY = 0.0;
+		game->player.dir_x = 0.0;
+		game->player.dir_y = -1.0;
+		game->player.plane_x = -0.66;
+		game->player.plane_y = 0.0;
 	}
 	else if (game->player.direction == EAST)
 	{
-		game->player.dirX = 0.0;
-		game->player.dirY = 1.0;
-		game->player.planeX = 0.66;
-		game->player.planeY = 0.0;
+		game->player.dir_x = 0.0;
+		game->player.dir_y = 1.0;
+		game->player.plane_x = 0.66;
+		game->player.plane_y = 0.0;
 	}
 }
 
@@ -78,6 +78,6 @@ void	init_player(t_game *game)
 	_buff_init(game);
 	_direction_init1(game);
 	_direction_init2(game);
-	game->player.movementS = 0.06;
-	game->player.rotationS = 0.05;
+	game->player.movement_s = 0.05;
+	game->player.rotation_s = 0.04;
 }

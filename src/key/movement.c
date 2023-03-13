@@ -2,22 +2,22 @@
 
 void	move_up(t_game *game)
 {
-	if (!game->map.map_int[(int)(game->player.posX + game->player.dirX *
-			game->player.movementS)][(int)game->player.posY])
-		game->player.posX += game->player.dirX * game->player.movementS;
-	if (!game->map.map_int[(int)game->player.posX]
-			[(int)(game->player.posY + game->player.dirY * game->player.movementS)])
-		game->player.posY += game->player.dirY * game->player.movementS;
+	if (!game->map.map_int[(int)(game->player.pos_x + game->player.dir_x *
+			game->player.movement_s)][(int)game->player.pos_y])
+		game->player.pos_x += game->player.dir_x * game->player.movement_s;
+	if (!game->map.map_int[(int)game->player.pos_x]
+			[(int)(game->player.pos_y + game->player.dir_y * game->player.movement_s)])
+		game->player.pos_y += game->player.dir_y * game->player.movement_s;
 }
 
 void	move_behind(t_game *game)
 {
-	if (!game->map.map_int[(int)(game->player.posX - game->player.dirX *
-			game->player.movementS)][(int)game->player.posY])
-		game->player.posX -= game->player.dirX * game->player.movementS;
-	if (!game->map.map_int[(int)game->player.posX]
-			[(int)(game->player.posY - game->player.dirY * game->player.movementS)])
-		game->player.posY -= game->player.dirY * game->player.movementS;
+	if (!game->map.map_int[(int)(game->player.pos_x - game->player.dir_x *
+			game->player.movement_s)][(int)game->player.pos_y])
+		game->player.pos_x -= game->player.dir_x * game->player.movement_s;
+	if (!game->map.map_int[(int)game->player.pos_x]
+			[(int)(game->player.pos_y - game->player.dir_y * game->player.movement_s)])
+		game->player.pos_y -= game->player.dir_y * game->player.movement_s;
 }
 
 void move_right(t_game *game)
@@ -25,14 +25,14 @@ void move_right(t_game *game)
 	double dirX;
 	double dirY;
 
-	dirX = -game->player.dirY;
-	dirY = game->player.dirX;
-	if (!game->map.map_int[(int)(game->player.posX - dirX *
-			game->player.movementS)][(int)game->player.posY])
-		game->player.posX -= dirX * game->player.movementS;
-	if (!game->map.map_int[(int)game->player.posX]
-			[(int)(game->player.posY - dirY * game->player.movementS)])
-		game->player.posY -= dirY * game->player.movementS;
+	dirX = -game->player.dir_y;
+	dirY = game->player.dir_x;
+	if (!game->map.map_int[(int)(game->player.pos_x - dirX *
+			game->player.movement_s)][(int)game->player.pos_y])
+		game->player.pos_x -= dirX * game->player.movement_s;
+	if (!game->map.map_int[(int)game->player.pos_x]
+			[(int)(game->player.pos_y - dirY * game->player.movement_s)])
+		game->player.pos_y -= dirY * game->player.movement_s;
 }
 
 void move_left(t_game *game)
@@ -40,13 +40,13 @@ void move_left(t_game *game)
 	double dirX;
 	double dirY;
 
-	dirX = game->player.dirY;
-	dirY = -game->player.dirX;
-	if (!game->map.map_int[(int)(game->player.posX - dirX *
-			game->player.movementS)][(int)game->player.posY])
-		game->player.posX -= dirX * game->player.movementS;
-	if (!game->map.map_int[(int)game->player.posX]
-			[(int)(game->player.posY - dirY * game->player.movementS)])
-		game->player.posY -= dirY * game->player.movementS;
+	dirX = game->player.dir_y;
+	dirY = -game->player.dir_x;
+	if (!game->map.map_int[(int)(game->player.pos_x - dirX *
+			game->player.movement_s)][(int)game->player.pos_y])
+		game->player.pos_x -= dirX * game->player.movement_s;
+	if (!game->map.map_int[(int)game->player.pos_x]
+			[(int)(game->player.pos_y - dirY * game->player.movement_s)])
+		game->player.pos_y -= dirY * game->player.movement_s;
 }
 

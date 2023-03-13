@@ -5,7 +5,7 @@ void	free_exit(t_game *game)
 	int i;
 
 	i = -1;
-	while (++i < w_height)
+	while (++i < W_HEIGHT)
 		free(game->buff[i]);
 	free(game->buff);
 	ft_free_char_array(game->map.map, game->map.read_line);

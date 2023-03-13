@@ -6,12 +6,12 @@ void	background(t_game *game)
 	int	y;
 
 	y = -1;
-	while (++y < w_height)
+	while (++y < W_HEIGHT)
 	{
 		x = -1;
-		while (++x < w_width)
+		while (++x < W_WIDTH)
 		{
-			if (y < (w_height / 2))
+			if (y < (W_HEIGHT / 2))
 				game->buff[y][x] = game->map.ceiling_color;
 			else
 				game->buff[y][x] = game->map.floor_color;;
@@ -21,13 +21,13 @@ void	background(t_game *game)
 
 void	init_math(t_math *math, t_game *game, int x)
 {
-	math->cameraX = 2 * x / (double)w_width - 1;
-	math->rayDirX = game->player.dirX + game->player.planeX * math->cameraX;
-	math->rayDirY = game->player.dirY + game->player.planeY * math->cameraX;
-	math->mapX = (int)game->player.posX;
-	math->mapY = (int)game->player.posY;
-	math->deltaDistX = fabs(1 / math->rayDirX);
-	math->deltaDistY = fabs(1 / math->rayDirY);
+	math->camera_x = 2 * x / (double)W_WIDTH - 1;
+	math->ray_dir_x = game->player.dir_x + game->player.plane_x * math->camera_x;
+	math->ray_dir_y = game->player.dir_y + game->player.plane_y * math->camera_x;
+	math->map_x = (int)game->player.pos_x;
+	math->map_y = (int)game->player.pos_y;
+	math->delta_dist_x = fabs(1 / math->ray_dir_x);
+	math->delta_dist_y = fabs(1 / math->ray_dir_y);
 	math->hit = 0;
 }
 
@@ -36,19 +36,19 @@ void	dda(t_math *math, t_game *game)
 {
 	while (math->hit == 0)
 	{
-		if(math->sideDistX < math->sideDistY)
+		if(math->side_dist_x < math->side_dist_y)
 		{
-			math->sideDistX += math->deltaDistX;
-			math->mapX += math->stepX;
+			math->side_dist_x += math->delta_dist_x;
+			math->map_x += math->step_x;
 			math->side = 0;
 		}
 		else
 		{
-			math->sideDistY += math->deltaDistY;
-			math->mapY += math->stepY;
+			math->side_dist_y += math->delta_dist_y;
+			math->map_y += math->step_y;
 			math->side = 1;
 		}
-		if(game->map.map_int[math->mapX][math->mapY] > 0) math->hit = 1;
+		if(game->map.map_int[math->map_x][math->map_y] > 0) math->hit = 1;
 	}
 }
 
@@ -60,7 +60,7 @@ void	wall_cast(t_game *game)
 
 	// ft_bzero(&math, sizeof(t_math));
 	x = -1;
-	while (++x < w_width)
+	while (++x < W_WIDTH)
 	{
 		init_math(&math, game, x);
 		step_side(&math, game);
@@ -70,9 +70,9 @@ void	wall_cast(t_game *game)
 		y = math.draw_start ;
 		while (y < math.draw_end)
 		{
-			math.texY = (int)math.texPos & (texture_size - 1);
-			math.texPos += math.step;
-			math.color = game->text[math.tex_n][texture_size * math.texY + math.texX];
+			math.tex_y = (int)math.tex_pos & (TEXTURE_SIZE- 1);
+			math.tex_pos += math.step;
+			math.color = game->text[math.tex_n][TEXTURE_SIZE* math.tex_y + math.tex_x];
 			game->buff[y][x] = math.color;
 			y++;
 		}

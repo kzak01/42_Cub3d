@@ -6,11 +6,11 @@ void	draw_img(t_game *game)
 	int	y;
 
 	y = -1;
-	while (++y < w_height)
+	while (++y < W_HEIGHT)
 	{
 		x = -1;
-		while (++x < w_width)
-			game->img.data[y * w_width + x] = game->buff[y][x];
+		while (++x < W_WIDTH)
+			game->img.data[y * W_WIDTH + x] = game->buff[y][x];
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 }
