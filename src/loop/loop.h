@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loop.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 14:14:34 by kzak              #+#    #+#             */
+/*   Updated: 2023/03/13 14:15:54 by kzak             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LOOP_H
 # define LOOP_H
 
 # include "../main.h"
 
-typedef struct s_game t_game;
-typedef struct s_math t_math;
+typedef struct s_game	t_game;
+typedef struct s_math	t_math;
 
 //loop.c
 int		game_loop(t_game *game);

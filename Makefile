@@ -11,6 +11,8 @@ SRC_MAIN = 	src/main.c \
 			src/map/check_map.c \
 			src/map/check_player.c \
 			src/map/map.c \
+			src/map/open_close_fd.c \
+			src/map/read_map.c \
 			src/map/utils.c \
 			src/map/varius_check.c \
 			src/utils/error.c \

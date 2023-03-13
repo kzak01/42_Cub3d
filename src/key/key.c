@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 14:08:40 by kzak              #+#    #+#             */
+/*   Updated: 2023/03/13 14:09:56 by kzak             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "key.h"
 
 int	key_press(int key, t_game *game)
@@ -19,7 +31,7 @@ int	key_press(int key, t_game *game)
 	return (0);
 }
 
-int	key_release(int	key, t_game *game)
+int	key_release(int key, t_game *game)
 {
 	if (key == K_ESC)
 		game->key.key_esc = 0;

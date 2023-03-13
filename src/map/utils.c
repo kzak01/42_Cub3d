@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 14:29:32 by kzak              #+#    #+#             */
+/*   Updated: 2023/03/13 14:40:50 by kzak             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "map.h"
 
 void	read_texture_path(char *line, char **texture_path_ptr)
 {
-	// printf("line ======== {%s}\n", line);
 	char	*text;
 
 	text = ft_strtrim(line + 2, " \t");
@@ -16,31 +27,32 @@ void	read_texture_path(char *line, char **texture_path_ptr)
 	*texture_path_ptr = text;
 }
 
-int	convertColorToInt(char* color)
+int	convert_color_to_int(char *color)
 {
 	char	**split;
-	int		R;
-	int		G;
-	int		B;
+	int		r;
+	int		g;
+	int		b;
 	int		color_int;
 
 	split = ft_split(color + 2, ',');
 	if (split == NULL || ft_str_array_len(split) != 3)
 		return (error("something wrong in color!"));
-	R = ft_atoi(split[0]);
-	G = ft_atoi(split[1]);
-	B = ft_atoi(split[2]);
-	if (R < 0 || R > 255 || G < 0 || G > 255 || B < 0 || B > 255)
+	r = ft_atoi(split[0]);
+	g = ft_atoi(split[1]);
+	b = ft_atoi(split[2]);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
 		ft_free_char_array(split, ft_str_array_len(split));
 		return (error("something wrong in color!"));
 	}
-	color_int = (R << 16) | (G << 8) | B;
+	color_int = (r << 16) | (g << 8) | b;
 	ft_free_char_array(split, ft_str_array_len(split));
 	return (color_int);
 }
 
-void	read_map_line(char *line, t_game *game, int line_index, int map_width_ptr)
+void	read_map_line(char *line, t_game *game, int line_index,
+	int map_width_ptr)
 {
 	size_t	line_len;
 	char	*padded_line;

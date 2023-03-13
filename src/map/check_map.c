@@ -1,4 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 14:29:23 by kzak              #+#    #+#             */
+/*   Updated: 2023/03/13 14:34:11 by kzak             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "map.h"
+
+int	control(t_game *game, int x, int y)
+{
+	if (game->map.control_map[y][x] != '1'
+		&& game->map.control_map[y][x] != ' '
+		&& (y == 0 || x == 0
+		|| !game->map.control_map[y][x + 1]
+		|| game->map.control_map[y + 1] == NULL
+		|| game->map.control_map[y - 1][x] == ' '
+		|| game->map.control_map[y + 1][x] == ' '
+		|| game->map.control_map[y][x - 1] == ' '
+		|| game->map.control_map[y][x + 1] == ' '))
+		return (1);
+	return (0);
+}
 
 int	check_map(t_game *game)
 {
@@ -13,19 +40,12 @@ int	check_map(t_game *game)
 		x = -1;
 		while (game->map.control_map[y][++x])
 		{
-			if (game->map.control_map[y][x] != '1'
-				&& game->map.control_map[y][x] != ' '
-				&& (y == 0 || x == 0
-				|| !game->map.control_map[y][x + 1]
-				|| game->map.control_map[y + 1] == NULL
-				|| game->map.control_map[y - 1][x] == ' '
-				|| game->map.control_map[y + 1][x] == ' '
-				|| game->map.control_map[y][x - 1] == ' '
-				|| game->map.control_map[y][x + 1] == ' '))
+			if (control(game, x, y))
 				return (error("map must be close!"));
 		}
 	}
-	if (ft_strspn(game->map.control_map[y], "1 ") != ft_strlen(game->map.control_map[y]))
+	if (ft_strspn(game->map.control_map[y], "1 ")
+		!= ft_strlen(game->map.control_map[y]))
 		return (error("map must be close!"));
 	return (0);
 }
