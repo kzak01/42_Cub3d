@@ -1,13 +1,36 @@
 #include "img.h"
 
+// int	ft_array_int_len(int **arr)
+// {
+//     int len = 0;
+//     while (*arr != NULL) {
+//         len++;
+//         arr++;
+//     }
+//     return len;
+// }
+
+
+// int	ft_array_int_line_str(int **arr, int line)
+// {
+// 	int i;
+
+// 	i = -1;
+// 	if (!arr)
+// 		return (0);
+// 	while (arr[line][++i])
+// 		;
+// 	return (i);
+// }
+
 static int	_alloc_it(t_game *tex)
 {
 	int	i;
 	int	j;
 
+	i = -1;
 	if (!(tex->text = (int **)malloc(sizeof(int *) * 4)))
 		return (error("error in malloc texture!"));
-	i = -1;
 	while (++i < 4)
 	{
 		if (!(tex->text[i] = (int *)malloc(sizeof(int) * (texture_size * texture_size))))
@@ -37,7 +60,9 @@ static int	_load_img(t_game *tex, int *n_texture, char *path, t_img *img)
 	{
 		x = -1;
 		while (++x < img->img_w)
+		{
 			n_texture[img->img_w * y + x] = img->data[img->img_w * y + x];
+		}
 	}
 	mlx_destroy_image(tex->mlx, img->img);
 	return (0);

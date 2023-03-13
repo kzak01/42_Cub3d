@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 	printf("-----------------int-------------------------\n");
 	print_int_map(game.map.map_int, game.map.map_height, game.map.map_width);
 
+
 	game.mlx = mlx_init();
 	if (load_textures(&game))
 		return (1);

@@ -1,6 +1,6 @@
 #include "loop.h"
 
-static void	_background(t_game *game)
+void	background(t_game *game)
 {
 	int	x;
 	int	y;
@@ -19,47 +19,40 @@ static void	_background(t_game *game)
 	}
 }
 
-static void	_init_math(t_math *math, t_game *game, int x)
+void	init_math(t_math *math, t_game *game, int x)
 {
 	math->cameraX = 2 * x / (double)w_width - 1;
 	math->rayDirX = game->player.dirX + game->player.planeX * math->cameraX;
 	math->rayDirY = game->player.dirY + game->player.planeY * math->cameraX;
 	math->mapX = (int)game->player.posX;
 	math->mapY = (int)game->player.posY;
-//La funzione fabs() della libreria math restituisce il valore assoluto
-//(cioè il valore senza il segno) di un numero in virgola mobile, indipendentemente
-//dal fatto che questo sia negativo o positivo. Ad esempio, fabs(-3.14) restituirebbe
-//il valore 3.14, mentre fabs(2.71) restituirebbe il valore 2.71.
 	math->deltaDistX = fabs(1 / math->rayDirX);
 	math->deltaDistY = fabs(1 / math->rayDirY);
 	math->hit = 0;
 }
 
-static void	_step_side(t_math *math, t_game *game)
+//Digital Differential Analysis
+void	dda(t_math *math, t_game *game)
 {
-	if(math->rayDirX < 0)
+	while (math->hit == 0)
 	{
-		math->stepX = -1;
-		math->sideDistX = (game->player.posX - math->mapX) * math->deltaDistX;
-	}
-	else
-	{
-		math->stepX = 1;
-		math->sideDistX = (math->mapX + 1.0 - game->player.posX) * math->deltaDistX;
-	}
-	if(math->rayDirY < 0)
-	{
-		math->stepY = -1;
-		math->sideDistY = (game->player.posY - math->mapY) * math->deltaDistY;
-	}
-	else
-	{
-		math->stepY = 1;
-		math->sideDistY = (math->mapY + 1.0 - game->player.posY) * math->deltaDistY;
+		if(math->sideDistX < math->sideDistY)
+		{
+			math->sideDistX += math->deltaDistX;
+			math->mapX += math->stepX;
+			math->side = 0;
+		}
+		else
+		{
+			math->sideDistY += math->deltaDistY;
+			math->mapY += math->stepY;
+			math->side = 1;
+		}
+		if(game->map.map_int[math->mapX][math->mapY] > 0) math->hit = 1;
 	}
 }
 
-static void	_wall_cast(t_game *game)
+void	wall_cast(t_game *game)
 {
 	t_math	math;
 	int	x;
@@ -69,12 +62,12 @@ static void	_wall_cast(t_game *game)
 	x = -1;
 	while (++x < w_width)
 	{
-		_init_math(&math, game, x);
-		_step_side(&math, game);
+		init_math(&math, game, x);
+		step_side(&math, game);
 		dda(&math, game);
 		distance_ray(&math, game);
 		calculate_pixel(&math, game);
-		y = math.draw_start;
+		y = math.draw_start ;
 		while (y < math.draw_end)
 		{
 			math.texY = (int)math.texPos & (texture_size - 1);
@@ -88,6 +81,6 @@ static void	_wall_cast(t_game *game)
 
 void	ray_cast(t_game *game)
 {
-	_background(game);
-	_wall_cast(game);
+	background(game);
+	wall_cast(game);
 }

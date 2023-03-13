@@ -26,10 +26,7 @@ int	convertColorToInt(char* color)
 
 	split = ft_split(color + 2, ',');
 	if (split == NULL || ft_str_array_len(split) != 3)
-	{
-		ft_free_char_array(split, ft_str_array_len(split));
 		return (error("something wrong in color!"));
-	}
 	R = ft_atoi(split[0]);
 	G = ft_atoi(split[1]);
 	B = ft_atoi(split[2]);

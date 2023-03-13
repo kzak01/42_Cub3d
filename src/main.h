@@ -34,14 +34,14 @@
 //Keyboard ARROWS
 # define K_AR_L 123
 # define K_AR_R 124
-# define K_AR_D 125
 # define K_AR_U 126
+# define K_AR_D 125
 //ESC key
 # define K_ESC 53
 //Key keyboard
 # define K_K_A 0
-# define K_K_S 1
 # define K_K_D 2
+# define K_K_S 1
 # define K_K_W 13
 
 enum	e_cardinal
@@ -110,6 +110,7 @@ typedef struct s_map
 	char	*east_texture_path;
 	char	**map;
 	char	**control_map;
+	int		**map_int;
 	int		floor_color;
 	int		ceiling_color;
 	int		map_width;
@@ -122,7 +123,6 @@ typedef struct s_map
 	int		floor;
 	int		cardinal;
 	int		read_line;
-	int		**map_int;
 }	t_map;
 
 typedef struct s_player

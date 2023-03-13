@@ -1,6 +1,6 @@
 #include "loop.h"
 
-static void	_draw_img(t_game *game)
+void	draw_img(t_game *game)
 {
 	int	x;
 	int	y;
@@ -18,7 +18,7 @@ static void	_draw_img(t_game *game)
 int	game_loop(t_game *game)
 {
 	ray_cast(game);
-	_draw_img(game);
+	draw_img(game);
 	key_used(game);
 	return (0);
 }
