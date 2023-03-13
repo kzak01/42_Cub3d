@@ -22,7 +22,6 @@ SRC_MAIN = 	src/main.c \
 SRC	= $(SRC_MAIN)
 
 FLAGS				:= -g -Wall -Wextra -Werror -fcommon
-MINI_FLAG			:= -Imlx
 
 OBJS				= $(addprefix $(OBJS_DIR)/, ${SRC:.c=.o})
 LIBFT				= $(addprefix $(LIBF_DIR), $(LIBFT_A))
