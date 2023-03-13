@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:07:58 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 15:17:00 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 15:25:25 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static int	in_while2(char *line, t_game *game, int *line_num)
 	return (0);
 }
 
-static int read_lines(int fd, t_game *game, int *line_num)
+static int	read_lines(int fd, t_game *game, int *line_num)
 {
-	char *line;
-	int err;
+	char	*line;
+	int		err;
 
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -46,10 +46,10 @@ static int read_lines(int fd, t_game *game, int *line_num)
 			free(line);
 			return (1);
 		}
-		else if (err == 2) 
+		else if (err == 2)
 		{
 			free(line);
-			break;
+			break ;
 		}
 		free(line);
 	}
@@ -72,10 +72,10 @@ static int	alloc_map(t_game *game, int *line_num)
 	return (0);
 }
 
-int read_map(const char *file_path, t_game *game)
+int	read_map(const char *file_path, t_game *game)
 {
-	int fd;
-	int line_num;
+	int	fd;
+	int	line_num;
 
 	fd = open_file(file_path);
 	if (alloc_map(game, &line_num))
@@ -86,5 +86,5 @@ int read_map(const char *file_path, t_game *game)
 	game->map.control_map[game->map.map_height] = NULL;
 	if (close_file(fd))
 		return (1);
-	return 0;
+	return (0);
 }

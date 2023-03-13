@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:30 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 15:21:26 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 15:24:36 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		open_file(const char *file_path);
 int		close_file(int fd);
 
 //read_map.c
-int read_map(const char *file_path, t_game *game);
+int		read_map(const char *file_path, t_game *game);
 
 //utils.c
 void	read_texture_path(char *line, char **texture_path_ptr);
