@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/14 12:42:29 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/14 12:43:39 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct s_key
 	int	key_rotate_l;
 	int	key_esc;
 	int	key_door;
-	// int	door_press;
+	int	door_press;
 }	t_key;
 
 typedef struct s_immage

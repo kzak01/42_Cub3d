@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:08:40 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/14 12:41:06 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/14 12:44:44 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,33 @@ int	key_release(int key, t_game *game)
 	else if (key == K_K_Z)
 		game->mouse.mouse_active = 0;
 	else if (key == K_K_E)
+	{
 		game->key.key_door = 0;
+		game->key.door_press = 0;
+	}
 	return (0);
 }
 
 void	door_o_c(t_game *game)
 {
-	if (game->map.map[(int)game->player.pos_x + 1][(int)game->player.pos_y] == '2')
+	if (!game->key.door_press)
 	{
-		if (game->map.map_int[(int)game->player.pos_x + 1][(int)game->player.pos_y] == 2)
-			game->map.map_int[(int)game->player.pos_x + 1][(int)game->player.pos_y] = 0;
-		else
-			game->map.map_int[(int)game->player.pos_x + 1][(int)game->player.pos_y] = 2;
-	}
-	if (game->map.map[(int)game->player.pos_x - 1][(int)game->player.pos_y] == '2')
-	{
-		if (game->map.map_int[(int)game->player.pos_x - 1][(int)game->player.pos_y] == 2)
-			game->map.map_int[(int)game->player.pos_x - 1][(int)game->player.pos_y] = 0;
-		else
-			game->map.map_int[(int)game->player.pos_x - 1][(int)game->player.pos_y] = 2;
+		if (game->map.map[(int)game->player.pos_x + 1][(int)game->player.pos_y] == '2')
+		{
+			if (game->map.map_int[(int)game->player.pos_x + 1][(int)game->player.pos_y] == 2)
+				game->map.map_int[(int)game->player.pos_x + 1][(int)game->player.pos_y] = 0;
+			else
+				game->map.map_int[(int)game->player.pos_x + 1][(int)game->player.pos_y] = 2;
+			game->key.door_press = 1;
+		}
+		if (game->map.map[(int)game->player.pos_x - 1][(int)game->player.pos_y] == '2')
+		{
+			if (game->map.map_int[(int)game->player.pos_x - 1][(int)game->player.pos_y] == 2)
+				game->map.map_int[(int)game->player.pos_x - 1][(int)game->player.pos_y] = 0;
+			else
+				game->map.map_int[(int)game->player.pos_x - 1][(int)game->player.pos_y] = 2;
+			game->key.door_press = 1;
+		}
 	}
 }
 
