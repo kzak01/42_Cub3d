@@ -3,6 +3,7 @@ NAME := cub3d
 SRC_MAIN = 	src/main.c \
 			src/img/img.c \
 			src/key/key.c \
+			src/key/mouse_move.c \
 			src/key/movement.c \
 			src/key/rotate.c \
 			src/loop/loop.c \

@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/14 11:30:19 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/14 12:42:29 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include "key/key.h"
 # include "loop/loop.h"
 
-# define MAP_CHARS "01NEWS \n"
+# define MAP_CHARS "012NEWS \n"
 // # define w_width 1920
 // # define w_height 1080
 # define W_WIDTH 1280
@@ -41,6 +41,7 @@
 
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
+# define MOUSE_MOVE 6
 # define KEY_EXIT 17
 
 //Keyboard ARROWS
@@ -56,13 +57,16 @@
 # define K_K_S 1
 # define K_K_Z 6
 # define K_K_W 13
+# define K_K_E 14
 
 enum	e_cardinal
 {
 	NORTH,
 	SOUTH,
 	WEST,
-	EAST
+	EAST,
+	DOOR_C,
+	DOOR_O
 };
 
 typedef struct s_math
@@ -102,6 +106,8 @@ typedef struct s_key
 	int	key_rotate_r;
 	int	key_rotate_l;
 	int	key_esc;
+	int	key_door;
+	// int	door_press;
 }	t_key;
 
 typedef struct s_immage

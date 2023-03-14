@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:08:43 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 14:09:33 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/14 12:16:50 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ typedef struct s_game	t_game;
 int		key_press(int key, t_game *game);
 int		key_release(int key, t_game *game);
 void	key_used(t_game *game);
+
+//mouse_move.c
+int		mouse_move(int x, int y, t_game *game);
+void	mouse_toggle(t_game *game);
 
 //movement.c
 void	move_up(t_game *game);

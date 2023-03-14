@@ -6,28 +6,25 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:16:13 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/14 11:27:27 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/14 12:41:21 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	mouse_move(int x, int y, t_game *game)
+void	print_int_map(int **map_int, int rows, int cols)
 {
-	(void)y;
-	if (game->mouse.mouse_active)
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < rows)
 	{
-		int diff_x = x - game->mouse.mouse_x;
-		game->mouse.mouse_x = x;
-		double rot_speed = (diff_x * game->player.rotation_s) / 900;
-		double old_dir_x = game->player.dir_x;
-		game->player.dir_x = game->player.dir_x * cos(rot_speed) - game->player.dir_y * sin(rot_speed);
-		game->player.dir_y = old_dir_x * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
-		double old_plane_x = game->player.plane_x;
-		game->player.plane_x = game->player.plane_x * cos(rot_speed) - game->player.plane_y * sin(rot_speed);
-		game->player.plane_y = old_plane_x * sin(rot_speed) + game->player.plane_y * cos(rot_speed);
+		j = -1;
+		while (j < cols)
+			printf("%d", map_int[i][j]);
+		printf("\n");
 	}
-	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -42,6 +39,21 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_player(&game);
+	printf("n={%s}\ns={%s}\nw={%s}\ne={%s}\n"
+			"flor={%d}\nceil={%d}\nmap w={%d}\nmap h={%d}\n"
+			"posX={%f}\nposY={%f}\ndirection={%d}\n",
+			game.map.north_texture_path, game.map.south_texture_path,
+			game.map.west_texture_path, game.map.east_texture_path,
+			game.map.floor_color, game.map.ceiling_color,
+			game.map.map_width, game.map.map_height,
+			game.player.pos_x, game.player.pos_y, game.player.direction);
+
+	printf("-----------------char------------------------\n");
+	ft_print_str_array(game.map.map);
+	printf("-----------------cont------------------------\n");
+	ft_print_str_array(game.map.control_map);
+	// printf("-----------------int-------------------------\n");
+	// print_int_map(game.map.map_int, game.map.map_height, game.map.map_width);
 	game.mlx = mlx_init();
 	if (load_textures(&game))
 		return (1);
@@ -53,7 +65,7 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, KEY_EXIT, 0, end_program, &game);
 	mlx_hook(game.win, KEY_PRESS, 0, key_press, &game);
 	mlx_hook(game.win, KEY_RELEASE, 0, key_release, &game);
-	mlx_hook(game.win, 6, 0, mouse_move, &game);
+	mlx_hook(game.win, MOUSE_MOVE, 0, mouse_move, &game);
 	mlx_loop(game.mlx);
 	free_exit(&game);
 	return (0);
