@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:22 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 14:29:01 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/14 11:45:58 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	init_struct(t_game *game)
 	ft_bzero(&game->img, sizeof(t_img));
 	ft_bzero(&game->key, sizeof(t_key));
 	ft_bzero(&game->player, sizeof(t_player));
+	ft_bzero(&game->mouse, sizeof(t_mouse));
 	return (0);
 }
 

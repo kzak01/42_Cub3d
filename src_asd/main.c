@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:16:13 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 19:01:08 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 13:31:56 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,61 +42,6 @@ void	print_int_map(int **map_int, int rows, int cols)
 	// ft_print_str_array(game.map.control_map);
 	// printf("-----------------int-------------------------\n");
 	// print_int_map(game.map.map_int, game.map.map_height, game.map.map_width);
-
-
-int	mouse_move(int x, int y, t_game *game)
-{
-	if (game->mouse_active)
-	{
-		int diff_x = x - game->player.mouse_x;
-		game->player.mouse_x = x;
-		double rot_speed = diff_x * game->player.rotation_s;
-		double old_dir_x = game->player.dir_x;
-		game->player.dir_x = game->player.dir_x * cos(rot_speed) - game->player.dir_y * sin(rot_speed);
-		game->player.dir_y = old_dir_x * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
-		double old_plane_x = game->player.plane_x;
-		game->player.plane_x = game->player.plane_x * cos(rot_speed) - game->player.plane_y * sin(rot_speed);
-		game->player.plane_y = old_plane_x * sin(rot_speed) + game->player.plane_y * cos(rot_speed);
-	}
-	return (0);
-}
-
-void	unlock_mouse(t_game *game)
-{
-	game->mouse_active = false;
-	mlx_mouse_show();
-}
-
-void	lock_mouse(t_game *game)
-{
-	game->mouse_locked = true;
-	mlx_mouse_hide();
-	game->player.mouse_x = W_WIDTH / 2;
-	game->player.mouse_y = W_HEIGHT / 2;
-	mlx_mouse_move(game->win, game->player.mouse_x, game->player.mouse_y);
-}
-
-int	mouse_toggle(int keycode, t_game *game)
-{
-	if (keycode == KEY_Z)
-	{
-		game->mouse_active = !game->mouse_active;
-		if (game->mouse_active)
-			lock_mouse(game);
-		else
-			unlock_mouse(game);
-	}
-	return (0);
-}
-
-void	hide_mouse(t_game *game)
-{
-	mlx_mouse_hide();
-	game->mouse_x = W_WIDTH / 2;
-	game->mouse_y = W_HEIGHT / 2;
-	mlx_mouse_move(game->win, mouse_x, mouse_y);
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	game;

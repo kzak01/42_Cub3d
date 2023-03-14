@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:08:40 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 14:09:56 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/14 11:45:06 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	key_press(int key, t_game *game)
 		game->key.key_rotate_r = 1;
 	else if (key == K_AR_L)
 		game->key.key_rotate_l = 1;
+	else if (key == K_K_Z)
+		game->mouse.mouse_active = 1;
 	return (0);
 }
 
@@ -47,7 +49,30 @@ int	key_release(int key, t_game *game)
 		game->key.key_rotate_r = 0;
 	else if (key == K_AR_L)
 		game->key.key_rotate_l = 0;
+	else if (key == K_K_Z)
+		game->mouse.mouse_active = 0;
 	return (0);
+}
+
+void	unlock_mouse(t_game *game)
+{
+	mlx_mouse_show(game->mlx, game->win);
+}
+
+void	lock_mouse(t_game *game)
+{
+	// mlx_mouse_hide(game->mlx, game->win);
+	game->mouse.mouse_x = W_WIDTH / 2;
+	game->mouse.mouse_y = W_HEIGHT / 2;
+	// mlx_mouse_move(game->mlx, game->win, game->mouse.mouse_x, game->mouse.mouse_y);
+}
+
+void	mouse_toggle(t_game *game)
+{
+	if (game->mouse.mouse_active)
+		lock_mouse(game);
+	else
+		unlock_mouse(game);
 }
 
 void	key_used(t_game *game)
@@ -69,4 +94,5 @@ void	key_used(t_game *game)
 		free_exit(game);
 		exit(0);
 	}
+	mouse_toggle(game);
 }

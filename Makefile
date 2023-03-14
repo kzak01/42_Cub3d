@@ -80,30 +80,27 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "	... [Making libft]"
 	@$(LIBFT_MAKE)
-	@echo "		${GREEN}Libft compiled${RESET}"
+	@echo "		Libft compiled"
 	@echo "	... [Making Minilibx]"
 	@$(MLX_MAKE)
-	@echo "		${GREEN}Minilibx compiled${RESET}"
+	@echo "		Minilibx compiled"
 	@echo "	... [Making $(NAME)]"
-	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_A) ${MLX_LIB} -lm -o $(NAME) > /dev/null
-	@echo "		${GREEN}Cub3d compiled${RESET}"
+	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_A) $(MLX_LIB) -lm -o $(NAME) > /dev/null
+	@echo "		Cub3d compiled"
 
 # LINK ALL OBJECTS
-$(shell echo $(OBJS_DIR))/%.o: %.c
+$(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(FLAGS) -c $< -o $@
 
-# all: $(NAME)
-
 bonus: SRC := $(SRC_FILE_BONUS)
-bonus: MLX_LIB := minilibx/libmlx.a -lX11 -lXext -lXpm
+bonus: MLX_LIB := minilibx/libmlx.a -Lmlx -lmlx -framework OpenGL -framework Appkit
 bonus: FLAGS += -DBONUS
+bonus: OBJS_DIR := objs
 bonus: clean_all $(NAME)
 
-clean:
-	@echo "	... [Removing ${NAME} objs files]"
-	@rm   -rf ${OBJS_DIR}
-	@echo "		${RED} ${NAME} OBJS deleted${RESET}"
+clean_all: fclean
+	$(RMLIB)
 
 fclean: clean
 	@echo "	... [Removing $(NAME)]"
@@ -111,8 +108,11 @@ fclean: clean
 	@echo "		${RED}*.a's deleted${RESET}"
 	$(RMLIB)
 
-clean_all: fclean
-	$(RMLIB)
+clean:
+	@echo "	... [Removing ${NAME} objs files]"
+	@rm   -rf ${OBJS_DIR}
+	@echo "		${RED} ${NAME} OBJS deleted${RESET}"
+
 
 norm:
 	@norminette -R CheckForbiddenSourceHeader $(SRC_MAIN) $(SRC_BONUS) libft/*/*c libft/*/*.h

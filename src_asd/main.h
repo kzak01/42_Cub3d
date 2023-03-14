@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 18:59:14 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 13:33:13 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@
 # define K_K_A 0
 # define K_K_D 2
 # define K_K_S 1
-# define K_K_Z 6
 # define K_K_W 13
 
 enum	e_cardinal
@@ -151,13 +150,6 @@ typedef struct s_player
 	double		rotation_s;
 }	t_player;
 
-typedef struct s_mouse
-{
-	int	mouse_active;
-	int	mouse_x;
-	int	mouse_y;
-}	t_mouse;
-
 typedef struct s_game
 {
 	void		*mlx;
@@ -167,7 +159,6 @@ typedef struct s_game
 	t_img		img;
 	t_key		key;
 	t_map		map;
-	t_mouse		mouse;
 	t_player	player;
 }	t_game;
 
