@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 10:59:02 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 15:33:45 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ void	free_exit(t_game *game)
 	ft_free_char_array(game->map.map, game->map.read_line);
 	ft_free_char_array(game->map.control_map, game->map.read_line);
 	ft_free_int_array(game->map.map_int, game->map.read_line);
-	ft_free_int_array(game->text, 6);
+	ft_free_int_array(game->text, 7);
+	i = -1;
+	while (++i < game->util_sprt.sprites_n)
+		free(game->sprites[i]);
+	free(game->sprites);
 	free(game->z_buff);
 	free(game->map.east_texture_path);
 	free(game->map.north_texture_path);

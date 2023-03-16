@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:34 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 10:47:05 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 15:30:29 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 typedef struct s_game	t_game;
 typedef struct s_math	t_math;
+
+//frame_animation.c
+void	frame_animation(t_game *game);
 
 //loop.c
 int		game_loop(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 11:58:58 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 15:25:42 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,22 +169,30 @@ typedef struct s_sprites
 	double	x;
 	double	y;
 	int		texture_n;
+	char	sprite_tipe;
 }	t_sprites;
+
+typedef struct s_utilsprite
+{
+	int			sprites_n;
+	int			frame;
+	int			bubble_frame;
+}	t_utilsprite;
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	double		*z_buff;
-	int			**text;
-	int			**buff;
-	t_img		img;
-	t_key		key;
-	t_map		map;
-	t_mouse		mouse;
-	t_player	player;
-	t_sprites	*sprites;
-	int			sprites_n;
+	void			*mlx;
+	void			*win;
+	double			*z_buff;
+	int				**text;
+	int				**buff;
+	t_img			img;
+	t_key			key;
+	t_map			map;
+	t_mouse			mouse;
+	t_player		player;
+	t_sprites		**sprites;
+	t_utilsprite	util_sprt;
 }	t_game;
 
 #endif
