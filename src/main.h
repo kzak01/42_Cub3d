@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 15:43:41 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 20:32:21 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ enum	e_cardinal
 	NORTH,
 	SOUTH,
 	WEST,
-	EAST,
-	DOOR_C,
-	DOOR_O
+	EAST
 };
 
 typedef struct s_math
@@ -177,7 +175,7 @@ typedef struct s_utilsprite
 	int			sprites_n;
 	int			frame;
 	int			bubble_frame;
-	int			alg_frame;
+	int			siren_frame;
 }	t_utilsprite;
 
 typedef struct s_game

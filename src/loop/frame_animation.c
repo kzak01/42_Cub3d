@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:08:41 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 15:46:54 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 20:32:56 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	change_buble(t_game *game)
 	}
 }
 
-void	change_alg(t_game *game)
+void	change_siren(t_game *game)
 {
 	int	i;
 
@@ -43,15 +43,15 @@ void	change_alg(t_game *game)
 void	frame_animation(t_game *game)
 {
 	game->util_sprt.bubble_frame++;
-	game->util_sprt.alg_frame++;
+	game->util_sprt.siren_frame++;
 	if (game->util_sprt.bubble_frame == 20)
 	{
 		change_buble(game);
 		game->util_sprt.bubble_frame = 0;
 	}
-	if (game->util_sprt.alg_frame == 30)
+	if (game->util_sprt.siren_frame == 30)
 	{
-		change_alg(game);
-		game->util_sprt.alg_frame = 0;
+		change_siren(game);
+		game->util_sprt.siren_frame = 0;
 	}
 }

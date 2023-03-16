@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:22 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 15:26:59 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 19:16:25 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	_buff_init(t_game *game)
 	int	j;
 
 	i = -1;
-	j = -1;
 	while (++i < W_HEIGHT)
 	{
+		j = -1;
 		while (++j < W_WIDTH)
 			game->buff[i][j] = 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:35 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 15:03:06 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 19:04:17 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	check_other(t_game *game)
 		|| game->map.east != 1
 		|| game->map.floor != 1
 		|| game->map.ceil != 1
-		|| game->map.ceiling_color == 1
-		|| game->map.floor_color == 1)
+		|| game->map.ceiling_color != 1
+		|| game->map.floor_color != 1)
 		return (error("some rule are wrong!"));
 	return (0);
 }

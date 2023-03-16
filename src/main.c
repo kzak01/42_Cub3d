@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:16:13 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 15:37:01 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 18:57:48 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,21 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_player(&game);
-	printf("n={%s}\ns={%s}\nw={%s}\ne={%s}\n"
-			"flor={%d}\nceil={%d}\nmap w={%d}\nmap h={%d}\n"
-			"posX={%f}\nposY={%f}\ndirection={%d}\n",
-			game.map.north_texture_path, game.map.south_texture_path,
-			game.map.west_texture_path, game.map.east_texture_path,
-			game.map.floor_color, game.map.ceiling_color,
-			game.map.map_width, game.map.map_height,
-			game.player.pos_x, game.player.pos_y, game.player.direction);
+	// printf("n={%s}\ns={%s}\nw={%s}\ne={%s}\n"
+	// 		"flor={%d}\nceil={%d}\nmap w={%d}\nmap h={%d}\n"
+	// 		"posX={%f}\nposY={%f}\ndirection={%d}\n",
+	// 		game.map.north_texture_path, game.map.south_texture_path,
+	// 		game.map.west_texture_path, game.map.east_texture_path,
+	// 		game.map.floor_color, game.map.ceiling_color,
+	// 		game.map.map_width, game.map.map_height,
+	// 		game.player.pos_x, game.player.pos_y, game.player.direction);
 
-	printf("-----------------char------------------------\n");
-	ft_print_str_array(game.map.map);
-	printf("-----------------cont------------------------\n");
-	ft_print_str_array(game.map.control_map);
-	printf("-----------------int-------------------------\n");
-	print_int_map(game.map.map_int, &game);
+	// printf("-----------------char------------------------\n");
+	// ft_print_str_array(game.map.map);
+	// printf("-----------------cont------------------------\n");
+	// ft_print_str_array(game.map.control_map);
+	// printf("-----------------int-------------------------\n");
+	// print_int_map(game.map.map_int, &game);
 	if (play_game(&game))
 	{
 		free_exit(&game);

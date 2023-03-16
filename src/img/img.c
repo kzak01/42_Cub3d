@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:37:16 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 16:02:10 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 19:19:10 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,24 @@ static int	_load_img(t_game *tex, int *n_texture, char *path, t_img *img)
 	return (0);
 }
 
+static int _load_wall(t_game *tex, t_img *img)
+{
+	if (_load_img(tex, tex->text[0], tex->map.north_texture_path, img))
+		return (1);
+	if (_load_img(tex, tex->text[1], tex->map.south_texture_path, img))
+		return (1);
+	if (_load_img(tex, tex->text[2], tex->map.west_texture_path, img))
+		return (1);
+	if (_load_img(tex, tex->text[3], tex->map.east_texture_path, img))
+		return (1);
+	return (0);
+}
+
 static int	_load_it(t_game *tex)
 {
 	t_img	img;
 
-	if (_load_img(tex, tex->text[0], tex->map.north_texture_path, &img))
-		return (1);
-	if (_load_img(tex, tex->text[1], tex->map.south_texture_path, &img))
-		return (1);
-	if (_load_img(tex, tex->text[2], tex->map.west_texture_path, &img))
-		return (1);
-	if (_load_img(tex, tex->text[3], tex->map.east_texture_path, &img))
+	if (_load_wall(tex, &img))
 		return (1);
 	if (_load_img(tex, tex->text[4], "textures/Door1.xpm", &img))
 		return (1);

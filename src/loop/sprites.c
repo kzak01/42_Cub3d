@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:45:22 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 15:32:57 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 19:36:51 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,51 @@ void	sortSprites(int *order, double *dist, int amount)
 }
 
 
-void	sprites(t_game *game)
+void	sort_sprite(t_game *game, int *sprite_order, double sprite_dist)
 {
-	// (void)game;
-	int		spriteOrder[game->util_sprt.sprites_n];
-	double	spriteDistance[game->util_sprt.sprites_n];
-	for(int i = 0; i < game->util_sprt.sprites_n; i++)
+	int	i;
+
+	i = -1;
+	while(++i < game->util_sprt.sprites_n)
 	{
-		spriteOrder[i] = i;
-		spriteDistance[i] = ((game->player.pos_x - game->sprites[i]->x) * (game->player.pos_x - game->sprites[i]->x)
+		sprite_order[i] = i;
+		sprite_dist[i] = ((game->player.pos_x - game->sprites[i]->x) * (game->player.pos_x - game->sprites[i]->x)
 			+ (game->player.pos_y - game->sprites[i]->y) * (game->player.pos_y - game->sprites[i]->y));
 	}
-	sortSprites(spriteOrder, spriteDistance, game->util_sprt.sprites_n);
-	for(int i = 0; i < game->util_sprt.sprites_n; i++)
+	sortSprites(sprite_order, sprite_dist, game->util_sprt.sprites_n);
+}
+
+typedef struct s_math_sprite
+{
+	double	sprite_x;
+	double	sprite_y;
+	double	inv_det;
+	double	trasform_x;
+	double	trasform_y;
+	int		sprite_screen_x;
+	int		v_move_screen;
+	int		draw_start_y;
+	int		draw_end_y;
+	int		sprite_width;
+	int		draw_start_x;
+	int		draw_end_x;
+	int		stripe;
+	int		tex_x;
+	int		d;
+	int		tex_y;
+	int		color;
+}	t_math_sprite;
+
+void	sprites(t_game *game)
+{
+	int		spriteOrder[game->util_sprt.sprites_n];
+	double	spriteDistance[game->util_sprt.sprites_n];
+	int		i;
+	int		y;
+
+	i = -1;
+	sort_sprite();
+	while(++i < game->util_sprt.sprites_n)
 	{
 		double spriteX = game->sprites[spriteOrder[i]]->x - game->player.pos_x;
 		double spriteY = game->sprites[spriteOrder[i]]->y - game->player.pos_y;
@@ -98,7 +130,8 @@ void	sprites(t_game *game)
 			int texX = (int)((256 * (stripe - (-spriteWidth / 2 + spriteScreenX))
 				* TEXTURE_SIZE / spriteWidth) / 256);
 			if(transformY > 0 && stripe > 0 && stripe < W_WIDTH && transformY < game->z_buff[stripe])
-			for(int y = drawStartY; y < drawEndY; y++)
+			y = drawStartY;
+			while(y < drawEndY)
 			{
 				int d = (y-vMoveScreen) * 256 - W_HEIGHT * 128 + spriteHeight * 128;
 				int texY = ((d * TEXTURE_SIZE) / spriteHeight) / 256;
