@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:08:43 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/14 12:16:50 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 10:39:09 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "../main.h"
 
 typedef struct s_game	t_game;
+
+//door.c
+void	door_o_c(t_game *game);
 
 //key.c
 int		key_press(int key, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:37:16 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/14 12:19:18 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 10:59:18 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int	_alloc_it(t_game *tex)
 	int	j;
 
 	i = -1;
-	tex->text = (int **)malloc(sizeof(int *) * 5);
+	tex->text = (int **)malloc(sizeof(int *) * 6);
 	if (!tex->text)
 		return (error("error in malloc texture!"));
-	while (++i < 5)
+	while (++i < 6)
 	{
 		tex->text[i] = (int *)malloc(sizeof(int)
 				* (TEXTURE_SIZE * TEXTURE_SIZE));
@@ -29,7 +29,7 @@ static int	_alloc_it(t_game *tex)
 			return (error("error in malloc texture!"));
 	}
 	i = -1;
-	while (++i < 5)
+	while (++i < 6)
 	{
 		j = -1;
 		while (++j < TEXTURE_SIZE * TEXTURE_SIZE)
@@ -75,8 +75,8 @@ static int	_load_it(t_game *tex)
 		return (1);
 	if (_load_img(tex, tex->text[4], "textures/Door1.xpm", &img))
 		return (1);
-	// if (_load_img(tex, tex->text[4], "textures/Door3.xpm", &img))
-	// 	return (1);
+	if (_load_img(tex, tex->text[5], "textures/Buble.xpm", &img))
+		return (1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:07:58 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 15:25:25 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 10:27:16 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ static int	read_lines(int fd, t_game *game, int *line_num)
 static int	alloc_map(t_game *game, int *line_num)
 {
 	*line_num = -1;
-	game->map.map = (char **)malloc(sizeof(char *) * game->map.map_height);
+	game->map.map = (char **)malloc(sizeof(char *)
+			* game->map.map_height + 1);
 	game->map.map[0] = NULL;
 	if (!game->map.map)
 		return (1);
 	game->map.control_map = (char **)malloc(sizeof(char *)
-			* game->map.map_height);
+			* game->map.map_height + 1);
 	game->map.control_map[0] = NULL;
 	if (!game->map.control_map)
 		return (1);

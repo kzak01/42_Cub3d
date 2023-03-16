@@ -1,7 +1,10 @@
 NAME := cub3d
 
+// mettere in bonus: src/key/door.c src/loop/sprites.c src/key/mouse_move.c src/map/get_sprites.c
+
 SRC_MAIN = 	src/main.c \
 			src/img/img.c \
+			src/key/door.c \
 			src/key/key.c \
 			src/key/mouse_move.c \
 			src/key/movement.c \
@@ -9,8 +12,10 @@ SRC_MAIN = 	src/main.c \
 			src/loop/loop.c \
 			src/loop/ray_cast.c \
 			src/loop/raycast_utils.c \
+			src/loop/sprites.c \
 			src/map/check_map.c \
 			src/map/check_player.c \
+			src/map/get_sprites.c \
 			src/map/map.c \
 			src/map/open_close_fd.c \
 			src/map/read_map.c \

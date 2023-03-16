@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/14 12:43:39 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 11:58:58 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # include "../minilibx/mlx.h"
 // # include <mlx.h>
 
-# include "map/map.h"
 # include "img/img.h"
-# include "utils/utils.h"
 # include "key/key.h"
 # include "loop/loop.h"
+# include "map/map.h"
+# include "utils/utils.h"
 
-# define MAP_CHARS "012NEWS \n"
+# define MAP_CHARS "012NEWSB \n"
 // # define w_width 1920
 // # define w_height 1080
 # define W_WIDTH 1280
@@ -164,10 +164,18 @@ typedef struct s_mouse
 	int	mouse_y;
 }	t_mouse;
 
+typedef struct s_sprites
+{
+	double	x;
+	double	y;
+	int		texture_n;
+}	t_sprites;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	double		*z_buff;
 	int			**text;
 	int			**buff;
 	t_img		img;
@@ -175,6 +183,8 @@ typedef struct s_game
 	t_map		map;
 	t_mouse		mouse;
 	t_player	player;
+	t_sprites	*sprites;
+	int			sprites_n;
 }	t_game;
 
 #endif

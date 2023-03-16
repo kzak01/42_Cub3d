@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:34 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 14:15:54 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 10:47:05 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ void	distance_ray(t_math *math, t_game *game);
 void	side_wall(t_math *math, t_game *game);
 int		find_texture(t_math *math, t_game *game);
 void	calculate_pixel(t_math *math, t_game *game);
+
+//sprites.c
+void	sprites(t_game *game);
 
 #endif
