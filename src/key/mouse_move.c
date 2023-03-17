@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:02:22 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 10:41:24 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 14:18:18 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ static void	_unlock_mouse(t_game *game)
 	mlx_mouse_show(game->mlx, game->win);
 }
 
-	// mlx_mouse_hide(game->mlx, game->win);
-	// mlx_mouse_move(game->mlx, game->win, game->mouse.mouse_x, game->mouse.mouse_y);
+// mlx_mouse_hide(game->mlx, game->win);
+// mlx_mouse_move(game->mlx, game->win, game->mouse.mouse_x,
+//	game->mouse.mouse_y);
 static void	_lock_mouse(t_game *game)
 {
 	game->mouse.mouse_x = W_WIDTH / 2;

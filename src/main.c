@@ -6,23 +6,23 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:16:13 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 18:57:48 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 14:15:55 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	print_int_map(int **map_int, t_game *game)
-{
-	for(int i = 0; i < game->map.map_height; i++)
-	{
-		for(int j = 0; j < game->map.map_width; j++)
-		{
-			printf("%d", map_int[i][j]);
-		}
-		printf("\n");
-	}
-}
+// void	print_int_map(int **map_int, t_game *game)
+// {
+// 	for(int i = 0; i < game->map.map_height; i++)
+// 	{
+// 		for(int j = 0; j < game->map.map_width; j++)
+// 		{
+// 			printf("%d", map_int[i][j]);
+// 		}
+// 		printf("\n");
+// 	}
+// }
 
 static int	play_game(t_game *game)
 {
@@ -43,18 +43,6 @@ static int	play_game(t_game *game)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	if (init_struct(&game))
-		return (error("can't init game struct!"));
-	if (get_check_map(&game, argc, argv))
-	{
-		free_exit(&game);
-		return (1);
-	}
-	init_player(&game);
 	// printf("n={%s}\ns={%s}\nw={%s}\ne={%s}\n"
 	// 		"flor={%d}\nceil={%d}\nmap w={%d}\nmap h={%d}\n"
 	// 		"posX={%f}\nposY={%f}\ndirection={%d}\n",
@@ -70,6 +58,18 @@ int	main(int argc, char **argv)
 	// ft_print_str_array(game.map.control_map);
 	// printf("-----------------int-------------------------\n");
 	// print_int_map(game.map.map_int, &game);
+int	main(int argc, char **argv)
+{
+	t_game	game;
+
+	if (init_struct(&game))
+		return (error("can't init game struct!"));
+	if (get_check_map(&game, argc, argv))
+	{
+		free_exit(&game);
+		return (1);
+	}
+	init_player(&game);
 	if (play_game(&game))
 	{
 		free_exit(&game);

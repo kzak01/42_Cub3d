@@ -6,25 +6,23 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:45:22 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/17 08:55:03 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 14:26:11 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "loop.h"
 
-typedef struct		s_pair
-{
-	double	first;
-	int		second;
-}					t_pair;
-
 void	sort_order(t_pair *orders, int amount)
 {
 	t_pair	tmp;
+	int		i;
+	int		j;
 
-	for (int i = 0; i < amount; i++)
+	i = -1;
+	while (++i < amount)
 	{
-		for (int j = 0; j < amount - 1; j++)
+		j = -1;
+		while (++j < amount - 1)
 		{
 			if (orders[j].first > orders[j + 1].first)
 			{
@@ -42,15 +40,18 @@ void	sort_order(t_pair *orders, int amount)
 void	sortSprites(int *order, double *dist, int amount)
 {
 	t_pair	*sprites;
+	int		i;
 
+	i = -1;
 	sprites = (t_pair*)malloc(sizeof(t_pair) * amount);
-	for (int i = 0; i < amount; i++)
+	while (++i < amount)
 	{
 		sprites[i].first = dist[i];
 		sprites[i].second = order[i];
 	}
 	sort_order(sprites, amount);
-	for (int i = 0; i < amount; i++)
+	i = -1;
+	while (++i < amount)
 	{
 		dist[i] = sprites[amount - i - 1].first;
 		order[i] = sprites[amount - i - 1].second;
@@ -58,86 +59,66 @@ void	sortSprites(int *order, double *dist, int amount)
 	free(sprites);
 }
 
-
-void	sort_sprite(t_game *game, int *sprite_order, double *sprite_dist)
-{
-	int	i;
-
-	i = -1;
-	while(++i < game->util_sprt.sprites_n)
-	{
-		sprite_order[i] = i;
-		sprite_dist[i] = ((game->player.pos_x - game->sprites[i]->x) * (game->player.pos_x - game->sprites[i]->x)
-			+ (game->player.pos_y - game->sprites[i]->y) * (game->player.pos_y - game->sprites[i]->y));
-	}
-	sortSprites(sprite_order, sprite_dist, game->util_sprt.sprites_n);
-}
-
-typedef struct s_math_sprite
-{
-	double	sprite_x;
-	double	sprite_y;
-	double	inv_det;
-	double	trasform_x;
-	double	trasform_y;
-	int		sprite_screen_x;
-	int		v_move_screen;
-	int		draw_start_y;
-	int		draw_end_y;
-	int		sprite_width;
-	int		draw_start_x;
-	int		draw_end_x;
-	int		stripe;
-	int		tex_x;
-	int		d;
-	int		tex_y;
-	int		color;
-}	t_math_sprite;
-
 void	sprites(t_game *game)
 {
 	int		sprite_order[game->util_sprt.sprites_n];
 	double	sprite_dist[game->util_sprt.sprites_n];
-	int		i;
-	int		y;
+	t_math_sprite	m_sprite;
 
-	i = -1;
-	sort_sprite(game, sprite_order, sprite_dist);
-	while(++i < game->util_sprt.sprites_n)
+	ft_bzero(&m_sprite, sizeof(t_math_sprite));
+	m_sprite.i = 0;
+	while(m_sprite.i < game->util_sprt.sprites_n)
 	{
-		double spriteX = game->sprites[sprite_order[i]]->x - game->player.pos_x;
-		double spriteY = game->sprites[sprite_order[i]]->y - game->player.pos_y;
-		double invDet = 1.0 / (game->player.plane_x * game->player.dir_y - game->player.dir_x * game->player.plane_y);
-		double transformX = invDet * (game->player.dir_y * spriteX - game->player.dir_x * spriteY);
-		double transformY = invDet * (-game->player.plane_y * spriteX + game->player.plane_x * spriteY);
-		int spriteScreenX = (int)((W_WIDTH / 2) * (1 + transformX / transformY));
-		#define uDiv 1
-		#define vDiv 1
-		#define vMove 0.0
-		int vMoveScreen = (int)(vMove / transformY);
-		int spriteHeight = (int)fabs((W_HEIGHT / transformY) / vDiv);
-		int drawStartY = -spriteHeight / 2 + W_HEIGHT / 2 + vMoveScreen;
-		if(drawStartY < 0) drawStartY = 0;
-		int drawEndY = spriteHeight / 2 + W_HEIGHT / 2 + vMoveScreen;
-		if(drawEndY >= W_HEIGHT) drawEndY = W_HEIGHT - 1;
-		int spriteWidth = (int)fabs((W_HEIGHT / transformY) / uDiv);
-		int drawStartX = -spriteWidth / 2 + spriteScreenX;
-		if(drawStartX < 0) drawStartX = 0;
-		int drawEndX = spriteWidth / 2 + spriteScreenX;
-		if(drawEndX >= W_WIDTH) drawEndX = W_WIDTH - 1;
-		for(int stripe = drawStartX; stripe < drawEndX; stripe++)
+		sprite_order[m_sprite.i] = m_sprite.i;
+		sprite_dist[m_sprite.i] = ((game->player.pos_x - game->sprites[m_sprite.i]->x)
+			* (game->player.pos_x - game->sprites[m_sprite.i]->x)
+			+ (game->player.pos_y - game->sprites[m_sprite.i]->y)
+			* (game->player.pos_y - game->sprites[m_sprite.i]->y));
+		m_sprite.i++;
+	}
+	sortSprites(sprite_order, sprite_dist, game->util_sprt.sprites_n);
+	m_sprite.i = 0;
+	while(m_sprite.i < game->util_sprt.sprites_n)
+	{
+		m_sprite.sprite_x = game->sprites[sprite_order[m_sprite.i]]->x - game->player.pos_x;
+		m_sprite.sprite_y = game->sprites[sprite_order[m_sprite.i]]->y - game->player.pos_y;
+
+		m_sprite.inv_det = 1.0 / (game->player.plane_x * game->player.dir_y - game->player.dir_x * game->player.plane_y);
+		m_sprite.transform_x = m_sprite.inv_det * (game->player.dir_y * m_sprite.sprite_x - game->player.dir_x * m_sprite.sprite_y);
+		m_sprite.transform_y = m_sprite.inv_det * (-game->player.plane_y * m_sprite.sprite_x + game->player.plane_x * m_sprite.sprite_y);
+		m_sprite.sprite_screen_x = (int)((W_WIDTH / 2) * (1 + m_sprite.transform_x / m_sprite.transform_y));
+
+
+		m_sprite.v_move_screen = (int)(V_MOVE / m_sprite.transform_y);
+		m_sprite.sprite_h = (int)fabs((W_HEIGHT / m_sprite.transform_y) / V_DIV);
+		m_sprite.draw_start_y = -m_sprite.sprite_h / 2 + W_HEIGHT / 2 + m_sprite.v_move_screen;
+
+		if(m_sprite.draw_start_y < 0) m_sprite.draw_start_y = 0;
+		m_sprite.draw_end_y = m_sprite.sprite_h / 2 + W_HEIGHT / 2 + m_sprite.v_move_screen;
+		if(m_sprite.draw_end_y >= W_HEIGHT) m_sprite.draw_end_y = W_HEIGHT - 1;
+
+		m_sprite.sprite_width = (int)fabs((W_HEIGHT / m_sprite.transform_y) / U_DIV);
+		m_sprite.draw_start_x = -m_sprite.sprite_width / 2 + m_sprite.sprite_screen_x;
+
+		if(m_sprite.draw_start_x < 0) m_sprite.draw_start_x = 0;
+		m_sprite.draw_end_x = m_sprite.sprite_width / 2 + m_sprite.sprite_screen_x;
+		if(m_sprite.draw_end_x >= W_WIDTH) m_sprite.draw_end_x = W_WIDTH - 1;
+
+		for(m_sprite.stripe = m_sprite.draw_start_x; m_sprite.stripe < m_sprite.draw_end_x; m_sprite.stripe++)
 		{
-			int texX = (int)((256 * (stripe - (-spriteWidth / 2 + spriteScreenX))
-				* TEXTURE_SIZE / spriteWidth) / 256);
-			if(transformY > 0 && stripe > 0 && stripe < W_WIDTH && transformY < game->z_buff[stripe])
-			y = drawStartY;
-			while(y < drawEndY)
+			m_sprite.tex_x = (int)((256 * (m_sprite.stripe - (-m_sprite.sprite_width / 2 + m_sprite.sprite_screen_x))
+				* TEXTURE_SIZE / m_sprite.sprite_width) / 256);
+			if(m_sprite.transform_y > 0 && m_sprite.stripe > 0 && m_sprite.stripe < W_WIDTH && m_sprite.transform_y < game->z_buff[m_sprite.stripe])
+			m_sprite.y = m_sprite.draw_start_y;
+			while(m_sprite.y < m_sprite.draw_end_y)
 			{
-				int d = (y-vMoveScreen) * 256 - W_HEIGHT * 128 + spriteHeight * 128;
-				int texY = ((d * TEXTURE_SIZE) / spriteHeight) / 256;
-				int color = game->text[game->sprites[sprite_order[i]]->texture_n][TEXTURE_SIZE * texY + texX];
-				if((color & 0x00FFFFFF) != 0) game->buff[y][stripe] = color;
+				m_sprite.d = (m_sprite.y-m_sprite.v_move_screen) * 256 - W_HEIGHT * 128 + m_sprite.sprite_h * 128;
+				m_sprite.tex_y = ((m_sprite.d * TEXTURE_SIZE) / m_sprite.sprite_h) / 256;
+				m_sprite.color = game->text[game->sprites[sprite_order[m_sprite.i]]->texture_n][TEXTURE_SIZE * m_sprite.tex_y + m_sprite.tex_x];
+				if((m_sprite.color & 0x00FFFFFF) != 0) game->buff[m_sprite.y][m_sprite.stripe] = m_sprite.color;
+				m_sprite.y++;
 			}
 		}
+		m_sprite.i++;
 	}
 }

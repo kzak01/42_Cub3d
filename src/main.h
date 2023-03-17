@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 20:32:21 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 14:25:56 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 // # define w_height 1080
 # define W_WIDTH 1280
 # define W_HEIGHT 1024
-// # define w_width 640
-// # define w_height 480
+// # define W_WIDTH 640
+// # define W_HEIGHT 480
 # define TEXTURE_SIZE 64
 
 # define KEY_PRESS 2
@@ -66,34 +66,6 @@ enum	e_cardinal
 	WEST,
 	EAST
 };
-
-typedef struct s_math
-{
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	double	wall_x;
-	double	step;
-	double	tex_pos;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		line_h;
-	int		draw_start;
-	int		draw_end;
-	int		tex_n;
-	int		tex_x;
-	int		tex_y;
-	int		color;
-}	t_math;
 
 typedef struct s_key
 {

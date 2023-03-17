@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:40 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/15 12:57:06 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 14:19:27 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ int	find_texture(t_math *math, t_game *game)
 	(void)game;
 	if (game->map.map_int[math->map_x][math->map_y] == 2)
 		tex_n = 4;
-	else if (math->side == 0 && math->ray_dir_x < 0 && game->map.map_int[math->map_x][math->map_y] == 1)
+	else if (math->side == 0 && math->ray_dir_x < 0
+		&& game->map.map_int[math->map_x][math->map_y] == 1)
 		tex_n = NORTH;
-	else if (math->side == 0 && math->ray_dir_x >= 0 && game->map.map_int[math->map_x][math->map_y] == 1)
+	else if (math->side == 0 && math->ray_dir_x >= 0
+		&& game->map.map_int[math->map_x][math->map_y] == 1)
 		tex_n = SOUTH;
 	else if (math->side == 1 && math->ray_dir_y < 0)
 		tex_n = WEST;

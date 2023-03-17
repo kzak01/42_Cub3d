@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:38 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 10:45:07 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 12:18:47 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,5 @@ void	ray_cast(t_game *game)
 	background(game);
 	wall_cast(game);
 	sprites(game);
+	minimap(game);
 }
