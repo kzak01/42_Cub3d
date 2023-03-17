@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:45:22 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 19:36:51 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 08:55:03 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	sortSprites(int *order, double *dist, int amount)
 }
 
 
-void	sort_sprite(t_game *game, int *sprite_order, double sprite_dist)
+void	sort_sprite(t_game *game, int *sprite_order, double *sprite_dist)
 {
 	int	i;
 
@@ -96,17 +96,17 @@ typedef struct s_math_sprite
 
 void	sprites(t_game *game)
 {
-	int		spriteOrder[game->util_sprt.sprites_n];
-	double	spriteDistance[game->util_sprt.sprites_n];
+	int		sprite_order[game->util_sprt.sprites_n];
+	double	sprite_dist[game->util_sprt.sprites_n];
 	int		i;
 	int		y;
 
 	i = -1;
-	sort_sprite();
+	sort_sprite(game, sprite_order, sprite_dist);
 	while(++i < game->util_sprt.sprites_n)
 	{
-		double spriteX = game->sprites[spriteOrder[i]]->x - game->player.pos_x;
-		double spriteY = game->sprites[spriteOrder[i]]->y - game->player.pos_y;
+		double spriteX = game->sprites[sprite_order[i]]->x - game->player.pos_x;
+		double spriteY = game->sprites[sprite_order[i]]->y - game->player.pos_y;
 		double invDet = 1.0 / (game->player.plane_x * game->player.dir_y - game->player.dir_x * game->player.plane_y);
 		double transformX = invDet * (game->player.dir_y * spriteX - game->player.dir_x * spriteY);
 		double transformY = invDet * (-game->player.plane_y * spriteX + game->player.plane_x * spriteY);
@@ -135,7 +135,7 @@ void	sprites(t_game *game)
 			{
 				int d = (y-vMoveScreen) * 256 - W_HEIGHT * 128 + spriteHeight * 128;
 				int texY = ((d * TEXTURE_SIZE) / spriteHeight) / 256;
-				int color = game->text[game->sprites[spriteOrder[i]]->texture_n][TEXTURE_SIZE * texY + texX];
+				int color = game->text[game->sprites[sprite_order[i]]->texture_n][TEXTURE_SIZE * texY + texX];
 				if((color & 0x00FFFFFF) != 0) game->buff[y][stripe] = color;
 			}
 		}
