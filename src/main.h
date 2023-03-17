@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/17 14:25:56 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 16:37:01 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include "map/map.h"
 # include "utils/utils.h"
 
-# define MAP_CHARS "012NEWSAB \n"
+# define MAP_CHARS "012NEWSABC \n"
 // # define w_width 1920
 // # define w_height 1080
 # define W_WIDTH 1280
@@ -145,9 +145,9 @@ typedef struct s_sprites
 typedef struct s_utilsprite
 {
 	int			sprites_n;
-	int			frame;
 	int			bubble_frame;
 	int			siren_frame;
+	int			coll_frame;
 }	t_utilsprite;
 
 typedef struct s_game

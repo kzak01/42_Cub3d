@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:34 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/17 14:25:49 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 15:43:03 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,11 @@ void	distance_ray(t_math *math, t_game *game);
 void	side_wall(t_math *math, t_game *game);
 int		find_texture(t_math *math, t_game *game);
 void	calculate_pixel(t_math *math, t_game *game);
+
+//sprites_utils.c
+void	sort_far_close(t_game *game, int *sprite_order, double *sprite_dist);
+void	sort_sprites(int *order, double *dist, int amount);
+void	sprite_condition(t_game *game, t_math_sprite *m_sprite);
 
 //sprites.c
 void	sprites(t_game *game);

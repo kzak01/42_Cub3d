@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:37:16 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/17 14:16:18 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 16:29:47 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int	_alloc_it(t_game *tex)
 	int	j;
 
 	i = -1;
-	tex->text = (int **)malloc(sizeof(int *) * 9);
+	tex->text = (int **)malloc(sizeof(int *) * 11);
 	if (!tex->text)
 		return (error("error in malloc texture!"));
-	while (++i < 9)
+	while (++i < 11)
 	{
 		tex->text[i] = (int *)malloc(sizeof(int)
 				* (TEXTURE_SIZE * TEXTURE_SIZE));
@@ -29,7 +29,7 @@ static int	_alloc_it(t_game *tex)
 			return (error("error in malloc texture!"));
 	}
 	i = -1;
-	while (++i < 9)
+	while (++i < 11)
 	{
 		j = -1;
 		while (++j < TEXTURE_SIZE * TEXTURE_SIZE)
@@ -89,6 +89,10 @@ static int	_load_it(t_game *tex)
 	if (_load_img(tex, tex->text[7], "textures/Player1.xpm", &img))
 		return (1);
 	if (_load_img(tex, tex->text[8], "textures/Player2.xpm", &img))
+		return (1);
+	if (_load_img(tex, tex->text[9], "textures/Coll1.xpm", &img))
+		return (1);
+	if (_load_img(tex, tex->text[10], "textures/Coll2.xpm", &img))
 		return (1);
 	return (0);
 }

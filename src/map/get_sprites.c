@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:56:24 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/17 14:20:35 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/17 16:31:20 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	get_sprites_number(t_game *game)
 		while (game->map.map[y][++x])
 		{
 			if (game->map.map[y][x] == 'B'
-				|| game->map.map[y][x] == 'A')
+				|| game->map.map[y][x] == 'A'
+				|| game->map.map[y][x] == 'C')
 				game->util_sprt.sprites_n++;
 		}
 	}
@@ -59,6 +60,14 @@ int	check_sprites_type(t_game *game, int y, int x, int s)
 		game->sprites[s]->x = y + 0.5;
 		game->sprites[s]->y = x + 0.5;
 		game->sprites[s]->texture_n = 7;
+		game->sprites[s]->sprite_tipe = game->map.map[y][x];
+		s++;
+	}
+	if (game->map.map[y][x] == 'C')
+	{
+		game->sprites[s]->x = y + 0.5;
+		game->sprites[s]->y = x + 0.5;
+		game->sprites[s]->texture_n = 9;
 		game->sprites[s]->sprite_tipe = game->map.map[y][x];
 		s++;
 	}

@@ -14,6 +14,7 @@ SRC_MAIN = 	src/main.c \
 			src/loop/minimap.c \
 			src/loop/ray_cast.c \
 			src/loop/raycast_utils.c \
+			src/loop/sprites_utils.c \
 			src/loop/sprites.c \
 			src/map/check_map.c \
 			src/map/check_player.c \
