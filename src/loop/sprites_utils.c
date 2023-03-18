@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:37:35 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/17 15:42:57 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/18 11:20:57 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ void	sort_far_close(t_game *game, int *sprite_order, double *sprite_dist)
 	int	i;
 
 	i = -1;
-	while(++i < game->util_sprt.sprites_n)
+	while (++i < game->util_sprt.sprites_n)
 	{
 		sprite_order[i] = i;
 		sprite_dist[i] = ((game->player.pos_x - game->sprites[i]->x)
-			* (game->player.pos_x - game->sprites[i]->x)
-			+ (game->player.pos_y - game->sprites[i]->y)
-			* (game->player.pos_y - game->sprites[i]->y));
+				* (game->player.pos_x - game->sprites[i]->x)
+				+ (game->player.pos_y - game->sprites[i]->y)
+				* (game->player.pos_y - game->sprites[i]->y));
 	}
 }
 
-static void	_sort_order(t_pair *orders, int amount)
+static void	_sort_order(t_swap *orders, int amount)
 {
-	t_pair	tmp;
+	t_swap	tmp;
 	int		i;
 	int		j;
 
@@ -54,11 +54,11 @@ static void	_sort_order(t_pair *orders, int amount)
 
 void	sort_sprites(int *order, double *dist, int amount)
 {
-	t_pair	*sprites;
+	t_swap	*sprites;
 	int		i;
 
 	i = -1;
-	sprites = (t_pair*)malloc(sizeof(t_pair) * amount);
+	sprites = (t_swap *)malloc(sizeof(t_swap) * amount);
 	while (++i < amount)
 	{
 		sprites[i].first = dist[i];
@@ -72,15 +72,4 @@ void	sort_sprites(int *order, double *dist, int amount)
 		order[i] = sprites[amount - i - 1].second;
 	}
 	free(sprites);
-}
-
-void	sprite_condition(t_game *game, t_math_sprite *m_sprite)
-{
-	m_sprite->tex_x = (int)((256 * (m_sprite->stripe
-		- (-m_sprite->sprite_width / 2 + m_sprite->sprite_screen_x))
-		* TEXTURE_SIZE / m_sprite->sprite_width) / 256);
-	if(m_sprite->transform_y > 0 && m_sprite->stripe > 0
-		&& m_sprite->stripe < W_WIDTH
-		&& m_sprite->transform_y < game->z_buff[m_sprite->stripe])
-	m_sprite->y = m_sprite->draw_start_y;
 }
