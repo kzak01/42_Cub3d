@@ -1,18 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 12:19:10 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/18 15:18:32 by kzak             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "loop.h"
 
 # define MINI_OFFSET 15
+# define X 0
+# define Y 1
+
+typedef enum e_draw_phase
+{
+	e_FIRST_Y_TILE,
+	e_FIRST_X_TILE,
+	e_REST_OF_MAP
+}	t_draw_phase;
 
 typedef struct s_minimap
 {
@@ -45,26 +42,27 @@ static void	struct_init(t_game *game, t_minimap *mini)
 	// blu = 1;
 }
 
-static int	chose_color(t_game *game, t_minimap *mini, int x, int y)
+
+
+static int	chose_color(t_game *game, t_minimap *mini, int x_y[2], t_draw_phase phase)
 {
 	int	map_x;
 	int	map_y;
-	static int	asd_x = 1;
-	static int	asd_y = 1;
 
-	x -= MINI_OFFSET;
-	y -= MINI_OFFSET;
-	map_x = floor(game->player.pos_y) - mini->tiles_n_per_side + x / mini->tile_len;
-	map_y = floor(game->player.pos_x) - mini->tiles_n_per_side + y / mini->tile_len;
-	
-	if (map_x == mini->first_tile_x && asd_x > mini->tile_len - mini->first_tile_offset_x)
+	// (void)phase;
+	if (phase == e_REST_OF_MAP)
 	{
-		map_x++;
+		x_y[X] -= MINI_OFFSET - mini->tile_len - mini->first_tile_x;
+		x_y[Y] -= MINI_OFFSET - mini->tile_len - mini->first_tile_y;
 	}
-	if (map_y == mini->first_tile_y && asd_y > mini->tile_len - mini->first_tile_offset_y)
+	else
 	{
-		map_y++;
+		// return (0x000000);
+		x_y[X] -= MINI_OFFSET;
+		x_y[Y] -= MINI_OFFSET;
 	}
+	map_x = floor(game->player.pos_y) - mini->tiles_n_per_side + x_y[X] / mini->tile_len;
+	map_y = floor(game->player.pos_x) - mini->tiles_n_per_side + x_y[Y] / mini->tile_len;
 	// printf("x = %d, y = %d p_y = %f, p_x = %f\n", map_x, map_y, game->player.pos_y, game->player.pos_x);
 	if (map_y < game->map.map_height && map_x < game->map.map_width
 		&& map_y >= 0 && map_x >= 0)
@@ -80,18 +78,31 @@ static int	chose_color(t_game *game, t_minimap *mini, int x, int y)
 	return (0x000000);
 }
 
-static void draw_map(t_game *game, t_minimap *mini)
+static void draw_map(t_game *game, t_minimap *mini, t_draw_phase phase)
 {
-	int	x;
-	int	y;
+	int	x_y[2];
+	int	offset_y;
+	int	offset_x;
 
-	y = MINI_OFFSET - 1;
-	while (++y < mini->side_len + MINI_OFFSET)
+	if (phase == e_REST_OF_MAP)
 	{
-		x = MINI_OFFSET - 1;
-		while (++x < mini->side_len + MINI_OFFSET)
+		offset_x = MINI_OFFSET + mini->tile_len - mini->first_tile_x;
+		offset_y = MINI_OFFSET + mini->tile_len - mini->first_tile_y;
+	}
+	else
+	{
+		offset_x = MINI_OFFSET - 1;
+		offset_y = MINI_OFFSET - 1;
+	}
+	// (void)phase;
+	x_y[Y] = offset_y;
+	while (++x_y[Y] < mini->side_len + offset_y)
+	{
+		x_y[X] = offset_x;
+		while (++x_y[X] < mini->side_len + offset_x)
 		{
-			game->buff[y][x] = chose_color(game, mini, x, y);
+			game->buff[x_y[Y]][x_y[X]] = chose_color(game, mini, x_y, phase);
+			// game->buff[x_y[Y]][x_y[X]] = 0x000000;
 		}
 	}
 }
@@ -115,6 +126,8 @@ void	minimap(t_game *game)
 	t_minimap mini;
 
 	struct_init(game, &mini);
-	draw_map(game, &mini);
+	draw_map(game, &mini, e_FIRST_Y_TILE);
+	draw_map(game, &mini, e_FIRST_X_TILE);
+	draw_map(game, &mini, e_REST_OF_MAP);
 	draw_player(game, &mini);
 }
