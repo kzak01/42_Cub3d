@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:23 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 13:49:27 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 14:34:11 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ int	**char_to_int_map(t_game *game)
 		{
 			if (game->map.map[y][x] == '1')
 				map_int[y][x] = 1;
-			else if (game->map.map[y][x] == '2')
-				map_int[y][x] = 2;
 			else
 				map_int[y][x] = 0;
 		}

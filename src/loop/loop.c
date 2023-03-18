@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:31 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 19:23:05 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 14:14:32 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int	game_loop(t_game *game)
 	ray_cast(game);
 	draw_img(game);
 	key_used(game);
-	frame_animation(game);
 	return (0);
 }

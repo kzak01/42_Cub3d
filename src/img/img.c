@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:37:16 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/17 16:29:47 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 13:39:51 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int	_alloc_it(t_game *tex)
 	int	j;
 
 	i = -1;
-	tex->text = (int **)malloc(sizeof(int *) * 11);
+	tex->text = (int **)malloc(sizeof(int *) * 4);
 	if (!tex->text)
 		return (error("error in malloc texture!"));
-	while (++i < 11)
+	while (++i < 4)
 	{
 		tex->text[i] = (int *)malloc(sizeof(int)
 				* (TEXTURE_SIZE * TEXTURE_SIZE));
@@ -29,7 +29,7 @@ static int	_alloc_it(t_game *tex)
 			return (error("error in malloc texture!"));
 	}
 	i = -1;
-	while (++i < 11)
+	while (++i < 4)
 	{
 		j = -1;
 		while (++j < TEXTURE_SIZE * TEXTURE_SIZE)
@@ -61,38 +61,17 @@ static int	_load_img(t_game *tex, int *n_texture, char *path, t_img *img)
 	return (0);
 }
 
-static int	_load_wall(t_game *tex, t_img *img)
-{
-	if (_load_img(tex, tex->text[0], tex->map.north_texture_path, img))
-		return (1);
-	if (_load_img(tex, tex->text[1], tex->map.south_texture_path, img))
-		return (1);
-	if (_load_img(tex, tex->text[2], tex->map.west_texture_path, img))
-		return (1);
-	if (_load_img(tex, tex->text[3], tex->map.east_texture_path, img))
-		return (1);
-	return (0);
-}
-
 static int	_load_it(t_game *tex)
 {
 	t_img	img;
 
-	if (_load_wall(tex, &img))
+	if (_load_img(tex, tex->text[0], tex->map.north_texture_path, &img))
 		return (1);
-	if (_load_img(tex, tex->text[4], "textures/Door1.xpm", &img))
+	if (_load_img(tex, tex->text[1], tex->map.south_texture_path, &img))
 		return (1);
-	if (_load_img(tex, tex->text[5], "textures/Buble.xpm", &img))
+	if (_load_img(tex, tex->text[2], tex->map.west_texture_path, &img))
 		return (1);
-	if (_load_img(tex, tex->text[6], "textures/Buble1.xpm", &img))
-		return (1);
-	if (_load_img(tex, tex->text[7], "textures/Player1.xpm", &img))
-		return (1);
-	if (_load_img(tex, tex->text[8], "textures/Player2.xpm", &img))
-		return (1);
-	if (_load_img(tex, tex->text[9], "textures/Coll1.xpm", &img))
-		return (1);
-	if (_load_img(tex, tex->text[10], "textures/Coll2.xpm", &img))
+	if (_load_img(tex, tex->text[3], tex->map.east_texture_path, &img))
 		return (1);
 	return (0);
 }

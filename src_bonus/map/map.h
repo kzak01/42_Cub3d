@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:30 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 15:24:36 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 12:06:38 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int		**char_to_int_map(t_game *game);
 
 //check_player.c
 int		check_player(t_game *game);
+
+//get_sprites.c
+void	get_sprites_pos(t_game *game);
 
 //map.c
 int		get_check_map(t_game *game, int ac, char **av);

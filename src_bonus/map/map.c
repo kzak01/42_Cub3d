@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:28 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/13 15:23:05 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/16 13:16:39 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	get_check_map(t_game *game, int ac, char **av)
 		return (1);
 	if (check_player(game) != 1)
 		return (error("only 1 player allowed!"));
+	get_sprites_pos(game);
 	game->map.map_int = char_to_int_map(game);
 	return (0);
 }

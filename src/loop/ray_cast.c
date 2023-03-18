@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:38 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/17 12:18:47 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 14:25:21 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	wall_cast(t_game *game)
 			game->buff[y][x] = math.color;
 			y++;
 		}
-		game->z_buff[x] = math.perp_wall_dist;
 	}
 }
 
@@ -104,6 +103,4 @@ void	ray_cast(t_game *game)
 {
 	background(game);
 	wall_cast(game);
-	sprites(game);
-	minimap(game);
 }

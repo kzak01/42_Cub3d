@@ -1,43 +1,24 @@
-NAME := cub3d
+NAME = cub3d
 
-#mettere in bonus: src/key/door.c src/loop/sprites.c src/key/mouse_move.c src/map/get_sprites.c src/loop/frame_animation.c src/loop/minimap.c
+BONUS_NAME = cub3d_bonus
 
-SRC_MAIN = 	src/main.c \
-			src/img/img.c \
-			src/key/door.c \
-			src/key/key.c \
-			src/key/mouse_move.c \
-			src/key/movement.c \
-			src/key/rotate.c \
-			src/loop/frame_animation.c \
-			src/loop/loop.c \
-			src/loop/minimap.c \
-			src/loop/ray_cast.c \
-			src/loop/raycast_utils.c \
-			src/loop/sprites_utils.c \
-			src/loop/sprites.c \
-			src/map/check_map.c \
-			src/map/check_player.c \
-			src/map/get_sprites.c \
-			src/map/map.c \
-			src/map/open_close_fd.c \
-			src/map/read_map.c \
-			src/map/utils.c \
-			src/map/varius_check.c \
-			src/utils/error.c \
-			src/utils/free_exit.c \
-			src/utils/init.c \
-
-SRC_FILE_BONUS = src_bonus/main.c \
+SRC_BONUS =	src_bonus/main.c \
 			src_bonus/img/img.c \
+			src_bonus/key/door.c \
 			src_bonus/key/key.c \
+			src_bonus/key/mouse_move.c \
 			src_bonus/key/movement.c \
 			src_bonus/key/rotate.c \
+			src_bonus/loop/frame_animation.c \
 			src_bonus/loop/loop.c \
+			src_bonus/loop/minimap.c \
 			src_bonus/loop/ray_cast.c \
 			src_bonus/loop/raycast_utils.c \
+			src_bonus/loop/sprites_utils.c \
+			src_bonus/loop/sprites.c \
 			src_bonus/map/check_map.c \
 			src_bonus/map/check_player.c \
+			src_bonus/map/get_sprites.c \
 			src_bonus/map/map.c \
 			src_bonus/map/open_close_fd.c \
 			src_bonus/map/read_map.c \
@@ -45,26 +26,47 @@ SRC_FILE_BONUS = src_bonus/main.c \
 			src_bonus/map/varius_check.c \
 			src_bonus/utils/error.c \
 			src_bonus/utils/free_exit.c \
-			src_bonus/utils/init.c \
+			src_bonus/utils/init.c
 
-SRC	= $(SRC_MAIN)
+SRC_MANDATORY = src/main.c \
+			src/img/img.c \
+			src/key/key.c \
+			src/key/movement.c \
+			src/key/rotate.c \
+			src/loop/loop.c \
+			src/loop/ray_cast.c \
+			src/loop/raycast_utils.c \
+			src/map/check_map.c \
+			src/map/check_player.c \
+			src/map/map.c \
+			src/map/open_close_fd.c \
+			src/map/read_map.c \
+			src/map/utils.c \
+			src/map/varius_check.c \
+			src/utils/error.c \
+			src/utils/free_exit.c \
+			src/utils/init.c
 
-FLAGS			:= -g -Wall -Wextra -Werror -fcommon
+SRC	= $(SRC_MANDATORY)
+
+FLAGS			= -g -Wall -Wextra -Werror -fcommon
 
 
 OBJS_DIR		= objs
-OBJS			= $(addprefix $(OBJS_DIR)/, ${SRC:.c=.o})
+OBJS	= $(addprefix $(OBJS_DIR)/, ${SRC:.c=.o})
+OBJS_BONUS		= $(addprefix $(OBJS_DIR)/, ${SRC_BONUS:.c=.o})
 
-LIBFT_DIR		:= libft/
-LIBFT_A			:= libft/libft.a
+LIBFT_DIR		= libft/
+LIBFT_A			= libft/libft.a
 LIBFT			= $(addprefix $(LIBF_DIR), $(LIBFT_A))
 
-LIBFT_MAKE		:= @cd libft && make --no-print-directory && make clean --no-print-directory
-MLX_MAKE_MAC	:= @cd minilibx && make --no-print-directory 2> /dev/null
-MLX_MAKE_LINUX	:= @cd mlx && make --no-print-directory 2> /dev/null
-RMLIB			:= @cd libft && make fclean --no-print-directory
-RMMLX			:= @rm -f libmlx.dylib libmlx.a
+LIBFT_MAKE		= @cd libft && make --no-print-directory && make clean --no-print-directory
+MLX_MAKE_MAC	= @cd minilibx && make --no-print-directory 2> /dev/null
+MLX_MAKE_LINUX	= @cd mlx && make --no-print-directory 2> /dev/null
+RMLIB			= @cd libft && make fclean --no-print-directory
+RMMLX			= @rm -f libmlx.dylib libmlx.a
 MLX_DIR			= $(addprefix $(MLX_DIR), $(MLX_LIB))
+MLX				= minilibx/libmlx.a
 
 CC	= @gcc
 
@@ -86,34 +88,39 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@echo "	... [Making libft]"
-	@$(LIBFT_MAKE)
-	@echo "		Libft compiled"
-	@echo "	... [Making Minilibx]"
-	@$(MLX_MAKE)
-	@echo "		Minilibx compiled"
+bonus: $(BONUS_NAME)
+
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@echo "	... [Making $(NAME)]"
 	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_A) $(MLX_LIB) -lm -o $(NAME) > /dev/null
 	@echo "		Cub3d compiled"
+
+$(BONUS_NAME): $(LIBFT) $(MLX) $(OBJS_BONUS)
+	@echo "	... [Making $(BONUS_NAME)]"
+	@$(CC) $(FLAGS) $(OBJS_BONUS) $(LIBFT_A) $(MLX_LIB) -lm -o $(BONUS_NAME) > /dev/null
+	@echo "		Cub3d compiled"
+
+$(LIBFT):
+	@echo "	... [Making libft]"
+	@$(LIBFT_MAKE)
+	@echo "		Libft compiled"
+
+$(MLX):
+	@echo "	... [Making Minilibx]"
+	@$(MLX_MAKE)
+	@echo "		Minilibx compiled"
 
 # LINK ALL OBJECTS
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(FLAGS) -c $< -o $@
 
-bonus: SRC := $(SRC_FILE_BONUS)
-bonus: MLX_LIB := minilibx/libmlx.a -Lmlx -lmlx -framework OpenGL -framework Appkit
-bonus: FLAGS += -DBONUS
-bonus: OBJS_DIR := objs
-bonus: clean_all $(NAME)
-
 clean_all: fclean
 	$(RMLIB)
 
 fclean: clean
 	@echo "	... [Removing $(NAME)]"
-	@rm -rf ${NAME}
+	@rm -rf ${NAME}*
 	@echo "		${RED}*.a's deleted${RESET}"
 	$(RMLIB)
 
@@ -124,7 +131,7 @@ clean:
 
 
 norm:
-	@norminette -R CheckForbiddenSourceHeader $(SRC_MAIN) $(SRC_BONUS) libft/*/*c libft/*/*.h
+	@norminette -R CheckForbiddenSourceHeader $(SRC) $(SRC_BONUS) libft/*/*c libft/*/*.h
 
 sanitize:	re $(OBJS)
 			@$(CC) $(DEBUG_F) $(OBJS) $(LIBFT_A) ${MLX_LIB} -lm -o $(NAME)

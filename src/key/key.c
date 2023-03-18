@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:08:40 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 10:37:16 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 14:09:56 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ int	key_press(int key, t_game *game)
 		game->key.key_rotate_r = 1;
 	else if (key == K_AR_L)
 		game->key.key_rotate_l = 1;
-	else if (key == K_K_Z)
-		game->mouse.mouse_active = 1;
-	else if (key == K_K_E)
-		game->key.key_door = 1;
 	return (0);
 }
 
@@ -51,13 +47,6 @@ int	key_release(int key, t_game *game)
 		game->key.key_rotate_r = 0;
 	else if (key == K_AR_L)
 		game->key.key_rotate_l = 0;
-	else if (key == K_K_Z)
-		game->mouse.mouse_active = 0;
-	else if (key == K_K_E)
-	{
-		game->key.key_door = 0;
-		game->key.door_press = 0;
-	}
 	return (0);
 }
 
@@ -80,7 +69,4 @@ void	key_used(t_game *game)
 		free_exit(game);
 		exit(0);
 	}
-	if (game->key.key_door)
-		door_o_c(game);
-	mouse_toggle(game);
 }

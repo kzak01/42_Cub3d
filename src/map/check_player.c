@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:26 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 19:07:47 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/13 14:29:27 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	check_player(t_game *game)
 				n_player++;
 				game->player.pos_x = y + 0.5;
 				game->player.pos_y = x + 0.5;
+				game->map.map[y][x] = '0';
 			}
 		}
 	}
