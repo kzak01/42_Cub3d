@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:37:16 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 11:19:58 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/20 11:53:39 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ static int	_load_img(t_game *tex, int *n_texture, char *path, t_img *img)
 
 	img->img = mlx_xpm_file_to_image(tex->mlx, path, &img->img_w, &img->img_h);
 	if (!img->img)
+	{
+		free(img->img);
 		return (error("texture not found!"));
+	}
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->line_size,
 			&img->endian);
 	y = -1;
@@ -84,17 +87,6 @@ int	load_textures(t_game *tex)
 	if (_alloc_it(tex))
 		return (1);
 	if (_load_it(tex))
-	{
-		// if (tex->text)
-		// {
-		// 	while (++i < 4)
-		// 	{
-		// 		if (tex->text[i])
-		// 			free(tex->text[i]);
-		// 	}
-		// 	free(tex->text);
-		// }
 		return (1);
-	}
 	return (0);
 }

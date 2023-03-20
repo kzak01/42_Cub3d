@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:16:13 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 11:05:06 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/20 13:50:09 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@
 // 	}
 // }
 
-	// printf("n={%s}\ns={%s}\nw={%s}\ne={%s}\n"
-	// 		"flor={%d}\nceil={%d}\nmap w={%d}\nmap h={%d}\n"
-	// 		"posX={%f}\nposY={%f}\ndirection={%d}\n",
-	// 		game.map.north_texture_path, game.map.south_texture_path,
-	// 		game.map.west_texture_path, game.map.east_texture_path,
-	// 		game.map.floor_color, game.map.ceiling_color,
-	// 		game.map.map_width, game.map.map_height,
-	// 		game.player_x, game.player.pos_y, game.player.direction);
-
-	// printf("-----------------char------------------------\n");
-	// ft_print_str_array(game.map.map);
-	// printf("-----------------cont------------------------\n");
-	// ft_print_str_array(game.map.control_map);
-	// printf("-----------------int-------------------------\n");
-	// print_int_map(game.map.map_int, game.map.map_height, game.map.map_width);
-
 static int	play_game(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -60,6 +44,21 @@ static int	play_game(t_game *game)
 	return (0);
 }
 
+	// printf("n={%s}\ns={%s}\nw={%s}\ne={%s}\n"
+	// 		"flor={%d}\nceil={%d}\nmap w={%d}\nmap h={%d}\n"
+	// 		"posX={%f}\nposY={%f}\ndirection={%d}\n",
+	// 		game.map.north_texture_path, game.map.south_texture_path,
+	// 		game.map.west_texture_path, game.map.east_texture_path,
+	// 		game.map.floor_color, game.map.ceiling_color,
+	// 		game.map.map_width, game.map.map_height,
+	// 		game.player.pos_x, game.player.pos_y, game.player.direction);
+	// printf("-----------------char------------------------\n");
+	// ft_print_str_array(game.map.map);
+	// printf("-----------------cont------------------------\n");
+	// ft_print_str_array(game.map.control_map);
+	// printf("-----------------int-------------------------\n");
+	// print_int_map(game.map.map_int, game.map.map_height, game.map.map_width);
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -67,16 +66,10 @@ int	main(int argc, char **argv)
 	if (init_struct(&game))
 		return (error("can't init game struct!"));
 	if (get_check_map(&game, argc, argv))
-	{
-		free_exit(&game);
-		return (1);
-	}
+		end_program(&game);
 	init_player(&game);
 	if (play_game(&game))
-	{
-		free_exit(&game);
-		return (1);
-	}
-	free_exit(&game);
+		end_program(&game);
+	end_program(&game);
 	return (0);
 }

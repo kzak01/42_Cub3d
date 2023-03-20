@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:16:13 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 11:23:42 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/20 12:18:03 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static int	play_game(t_game *game)
 	// ft_print_str_array(game.map.control_map);
 	// printf("-----------------int-------------------------\n");
 	// print_int_map(game.map.map_int, &game);
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -65,16 +66,10 @@ int	main(int argc, char **argv)
 	if (init_struct(&game))
 		return (error("can't init game struct!"));
 	if (get_check_map(&game, argc, argv))
-	{
-		free_exit(&game);
-		return (1);
-	}
+		end_program(&game);
 	init_player(&game);
 	if (play_game(&game))
-	{
-		free_exit(&game);
-		return (1);
-	}
-	free_exit(&game);
+		end_program(&game);
+	end_program(&game);
 	return (0);
 }

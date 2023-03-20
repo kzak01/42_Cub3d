@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 11:19:49 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/20 13:14:40 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_exit(t_game *game)
 	ft_free_char_array(game->map.map, game->map.read_line);
 	ft_free_char_array(game->map.control_map, game->map.read_line);
 	ft_free_int_array(game->map.map_int, game->map.read_line);
-	ft_free_int_array(game->text, ft_int_array_len(game->text));
+	ft_free_int_array(game->text, 4);
 	free(game->map.east_texture_path);
 	free(game->map.north_texture_path);
 	free(game->map.south_texture_path);
