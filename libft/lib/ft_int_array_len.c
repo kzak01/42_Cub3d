@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_int_array.c                                :+:      :+:    :+:   */
+/*   ft_int_array_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 11:37:34 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 11:03:08 by kzak             ###   ########.fr       */
+/*   Created: 2023/03/20 11:11:41 by kzak              #+#    #+#             */
+/*   Updated: 2023/03/20 11:12:43 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../h_file/libft.h"
 
-void	ft_free_int_array(int **str, int len)
+int	ft_int_array_len(int **str)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	if (!str)
-		return ;
-	while (i < len)
-	{
-		if (str[i])
-			free(str[i]);
-		i++;
-	}
-	free(str);
+	len = 0;
+	while (!str[len])
+		len++;
+	return (len);
 }

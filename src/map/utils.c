@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:32 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/16 10:34:09 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/20 11:28:09 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	convert_color_to_int(char *color)
 
 	split = ft_split(color + 2, ',');
 	if (split == NULL || ft_str_array_len(split) != 3)
+	{
+		ft_free_char_array(split, ft_str_array_len(split));
 		return (error("something wrong in color!"));
+	}
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);

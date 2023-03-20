@@ -6,7 +6,7 @@
 #    By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 11:10:21 by kzak              #+#    #+#              #
-#    Updated: 2023/03/09 13:08:55 by kzak             ###   ########.fr        #
+#    Updated: 2023/03/20 11:12:58 by kzak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRC_LIBFT = lib/ft_atoi.c \
 	  lib/ft_free_char_array.c \
 	  lib/ft_str_array_len.c \
 	  lib/ft_free_int_array.c \
+	  lib/ft_int_array_len.c
 
 SRC_PRINTF = ft_printf/ft_printf.c \
 				ft_printf/ft_printf_utils.c \

@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 10:43:29 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/09 13:09:02 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/20 11:12:54 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ size_t		ft_strspn(const char *str, const char *chars);
 void		ft_free_char_array(char **str, int len);
 void		ft_free_int_array(int **str, int len);
 int			ft_str_array_len(char **str);
+int			ft_int_array_len(int **str);
 
 #endif
