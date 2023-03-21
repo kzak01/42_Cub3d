@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:07:58 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 13:14:15 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/21 16:01:38 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	in_while2(char *line, t_game *game, int *line_num)
 			return (error("empty line in map!"));
 		if (ft_strlen(line) == 0)
 			return (0);
+		if (!ft_strchr(line, '1'))
+			return (error("the map is not surrounded by walls!"));
 		if (check_other(game))
 			return (1);
 		read_map_line(line, game, ++*line_num, game->map.map_width);

@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:32 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 11:27:55 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/21 15:48:09 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,27 @@ void	read_texture_path(char *line, char **texture_path_ptr)
 	*texture_path_ptr = text;
 }
 
+static int	_check_color_validity(char *color)
+{
+	int	i;
+	int	comma;
+
+	i = 1;
+	comma = 0;
+	while (color[++i])
+	{
+		if (color[i] == ',')
+			comma++;
+		if (!ft_isdigit(color[i]) && color[i] != ',')
+			return (error("only number in color!"));
+		if (color[i] == ' ')
+			return (error("space in color!"));
+	}
+	if (comma != 2)
+		return (error("why so many ','?"));
+	return (0);
+}
+
 int	convert_color_to_int(char *color)
 {
 	char	**split;
@@ -35,6 +56,8 @@ int	convert_color_to_int(char *color)
 	int		b;
 	int		color_int;
 
+	if (_check_color_validity(color))
+		return (1);
 	split = ft_split(color + 2, ',');
 	if (split == NULL || ft_str_array_len(split) != 3)
 	{

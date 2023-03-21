@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:37:16 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 11:53:39 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/21 15:39:34 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,6 @@ static int	_load_it(t_game *tex)
 
 int	load_textures(t_game *tex)
 {
-	int	i;
-
-	i = -1;
 	if (_alloc_it(tex))
 		return (1);
 	if (_load_it(tex))
