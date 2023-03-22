@@ -131,7 +131,7 @@ clean:
 
 
 norm:
-	@norminette -R CheckForbiddenSourceHeader $(SRC) $(SRC_BONUS) libft/*/*c libft/*/*.h
+	@norminette -R CheckForbiddenSourceHeader $(SRC) src/*.h src/*/*.h $(SRC_BONUS) src_bonus/*/*.h src_bonus/*.h libft/*/*c libft/*/*.h
 
 sanitize:	re $(OBJS)
 			@$(CC) $(DEBUG_F) $(OBJS) $(LIBFT_A) ${MLX_LIB} -lm -o $(NAME)

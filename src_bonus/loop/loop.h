@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:34 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/18 16:53:42 by kzak             ###   ########.fr       */
+/*   Updated: 2023/03/22 11:38:56 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_game	t_game;
 
-typedef struct		s_swap
+typedef struct s_swap
 {
 	double	first;
 	int		second;
