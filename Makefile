@@ -53,7 +53,7 @@ FLAGS			= -g -Wall -Wextra -Werror -fcommon
 
 
 OBJS_DIR		= objs
-OBJS	= $(addprefix $(OBJS_DIR)/, ${SRC:.c=.o})
+OBJS			= $(addprefix $(OBJS_DIR)/, ${SRC:.c=.o})
 OBJS_BONUS		= $(addprefix $(OBJS_DIR)/, ${SRC_BONUS:.c=.o})
 
 LIBFT_DIR		= libft/
@@ -61,12 +61,12 @@ LIBFT_A			= libft/libft.a
 LIBFT			= $(addprefix $(LIBF_DIR), $(LIBFT_A))
 
 LIBFT_MAKE		= @cd libft && make --no-print-directory && make clean --no-print-directory
-MLX_MAKE_MAC	= @cd minilibx && make --no-print-directory 2> /dev/null
-MLX_MAKE_LINUX	= @cd mlx && make --no-print-directory 2> /dev/null
+MLX_MAKE_MAC	= @cd mlx_mc && make --no-print-directory 2> /dev/null
+MLX_MAKE_LINUX	= @cd mlx_linux && make --no-print-directory 2> /dev/null
 RMLIB			= @cd libft && make fclean --no-print-directory
 RMMLX			= @rm -f libmlx.dylib libmlx.a
 MLX_DIR			= $(addprefix $(MLX_DIR), $(MLX_LIB))
-MLX				= minilibx/libmlx.a
+# MLX				= minilibx/libmlx.a
 
 CC	= @gcc
 
@@ -77,10 +77,10 @@ RACE_F	= -g -fsanitize=thread
 LEAK_F  = -g -fsanitize=leak -llsan
 
 ifeq ($(shell uname), Darwin)
-	MLX_LIB	= minilibx/libmlx.a -Lmlx -lmlx -framework OpenGL -framework Appkit
+	MLX_LIB	= mlx_mc/libmlx.a -Lmlx -lmlx -framework OpenGL -framework Appkit
 	MLX_MAKE = $(MLX_MAKE_MAC)
 else
-	MLX_LIB	= mlx/libmlx.a -lX11 -lXext -lXpm
+	MLX_LIB	= mlx_linux/libmlx.a -lX11 -lXext -lXpm
 	MLX_MAKE = $(MLX_MAKE_LINUX)
 endif
 

@@ -6,7 +6,7 @@
 /*   By: kzak <kzak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:17:19 by kzak              #+#    #+#             */
-/*   Updated: 2023/03/20 11:39:37 by kzak             ###   ########.fr       */
+/*   Updated: 2023/05/03 12:00:56 by kzak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <math.h>
 # include <string.h>
 # include "../libft/h_file/libft.h"
-# include "../mlx/mlx.h"
-# include "../minilibx/mlx.h"
+# include "../mlx_mc/mlx.h"
+# include "../mlx_linux/mlx.h"
 // # include <mlx.h>
 
 # include "img/img.h"
